@@ -1,0 +1,17 @@
+---
+import { SITE } from 'astrowind:config';
+import { Image } from 'astro:assets';
+import logoImage from '~/assets/images/west 52 bbq logo Background Removed.png';
+---
+
+<div class="flex items-center">
+  <Image
+    src={logoImage}
+    alt="West 52 BBQ - You Don't Have To Fight It To Bite It"
+    width={120}
+    height={40}
+    class="h-8 md:h-10 w-auto"
+    loading="eager"
+  />
+  <span class="sr-only">{SITE?.name}</span>
+</div>

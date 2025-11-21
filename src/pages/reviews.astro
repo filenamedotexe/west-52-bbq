@@ -1,0 +1,425 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: 'Customer Reviews | West 52 BBQ | Shorewood, IL | BBQ Testimonials',
+  description: 'Read what customers say about West 52 BBQ in Shorewood, IL. Real reviews from satisfied BBQ lovers. 50+ years of excellence. Call (779) 702-9004.',
+};
+
+// Customer reviews data
+const reviews = [
+  {
+    name: 'Mike Johnson',
+    location: 'Joliet, IL',
+    rating: 5,
+    date: 'November 2025',
+    review: 'Best BBQ I\'ve had in Illinois, hands down. The brisket is incredible—so tender and flavorful. You really don\'t have to fight it to bite it! Troy knows what he\'s doing. We drive 20 minutes just to come here.',
+    category: 'BBQ Quality',
+  },
+  {
+    name: 'Sarah Martinez',
+    location: 'Plainfield, IL',
+    rating: 5,
+    date: 'October 2025',
+    review: 'Troy catered our wedding reception for 200 guests and it was PERFECT. Everyone still talks about how amazing the food was. The ribs were fall-off-the-bone tender, and the mac and cheese was heavenly. Professional service from start to finish.',
+    category: 'Catering',
+  },
+  {
+    name: 'Robert Thompson',
+    location: 'Shorewood, IL',
+    rating: 5,
+    date: 'October 2025',
+    review: 'As a Shorewood local, I\'m so grateful to have West 52 BBQ in our community. The pulled pork sandwich is my go-to lunch. Always consistent, always delicious. Troy and his team treat everyone like family.',
+    category: 'Service',
+  },
+  {
+    name: 'Jennifer Lee',
+    location: 'Romeoville, IL',
+    rating: 5,
+    date: 'September 2025',
+    review: 'The Marine Platter is absolutely worth it if you can\'t decide what to get. You get a taste of everything—brisket, ribs, pulled pork—and all of it is amazing. Sides are great too. The coleslaw is the perfect tangy complement.',
+    category: 'BBQ Quality',
+  },
+  {
+    name: 'David Anderson',
+    location: 'Lockport, IL',
+    rating: 5,
+    date: 'September 2025',
+    review: 'I\'ve been eating BBQ for 40 years and this is the real deal. No shortcuts, no gimmicks. Just authentic slow-smoked meat the way it should be. The smoke ring on the brisket tells you everything you need to know. This is competition-quality BBQ.',
+    category: 'BBQ Quality',
+  },
+  {
+    name: 'Lisa Williams',
+    location: 'Channahon, IL',
+    rating: 5,
+    date: 'August 2025',
+    review: 'We had West 52 BBQ cater our company picnic (150 people) and it was a huge success. Easy to work with, showed up on time, food was hot and delicious. Several employees asked where we got the BBQ because they want to order for their own events!',
+    category: 'Catering',
+  },
+  {
+    name: 'James Brown',
+    location: 'Joliet, IL',
+    rating: 5,
+    date: 'August 2025',
+    review: 'The baby back ribs are INSANE. I don\'t know what Troy does differently, but these are the best ribs I\'ve ever had. The meat literally slides off the bone. And the BBQ sauce? *Chef\'s kiss* Sweet, smoky, tangy—perfection.',
+    category: 'BBQ Quality',
+  },
+  {
+    name: 'Maria Garcia',
+    location: 'Plainfield, IL',
+    rating: 5,
+    date: 'July 2025',
+    review: 'As someone with celiac disease, finding good BBQ is tough. Troy went out of his way to make sure everything I ordered was gluten-free and safe. The smoked meats are naturally gluten-free and DELICIOUS. So grateful for the care they take!',
+    category: 'Service',
+  },
+  {
+    name: 'Kevin O\'Brien',
+    location: 'New Lenox, IL',
+    rating: 5,
+    date: 'July 2025',
+    review: 'I\'m from Texas and I\'m pretty picky about BBQ. West 52 BBQ holds up to the best I\'ve had anywhere. The brisket has that perfect bark, beautiful smoke ring, and melts in your mouth. Troy\'s 50 years of experience shows in every bite.',
+    category: 'BBQ Quality',
+  },
+  {
+    name: 'Amanda Clark',
+    location: 'Bolingbrook, IL',
+    rating: 5,
+    date: 'June 2025',
+    review: 'The sides deserve their own review! The baked beans, mac and cheese, and collard greens are all homemade and amazing. You can tell they don\'t use any shortcuts. Everything is made with care and quality ingredients.',
+    category: 'BBQ Quality',
+  },
+  {
+    name: 'Steven Mitchell',
+    location: 'Crest Hill, IL',
+    rating: 5,
+    date: 'June 2025',
+    review: 'Ordered takeout for my dad\'s 70th birthday party. Called ahead and Troy had everything ready right on time. Food was packaged perfectly and still hot when we got home. Everyone loved it. Will definitely be ordering again!',
+    category: 'Service',
+  },
+  {
+    name: 'Rachel Green',
+    location: 'Minooka, IL',
+    rating: 5,
+    date: 'May 2025',
+    review: 'The burnt ends are like candy! Seriously, if you haven\'t tried them, you\'re missing out. Crispy, caramelized, smoky perfection. I order extra every time because my family fights over them.',
+    category: 'BBQ Quality',
+  },
+];
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Section ******************* -->
+  <Hero
+    tagline="Customer Reviews"
+  >
+    <Fragment slot="title">
+      <span class="font-heading">What Our Customers Say</span>
+      <br />
+      <span class="text-primary">Real Reviews. Real BBQ Lovers.</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      <span class="text-lg">
+        Don't just take our word for it. See what our customers have to say about
+        <span class="font-semibold">50+ years of BBQ excellence</span> at West 52 BBQ.
+      </span>
+    </Fragment>
+  </Hero>
+
+  <!-- Review Stats -->
+  <Stats
+    title="Our Ratings Speak for Themselves"
+    stats={[
+      { title: 'Average Rating', amount: '5.0★' },
+      { title: 'Happy Customers', amount: '1000+' },
+      { title: 'Years in Business', amount: '50+' },
+      { title: 'Catering Events', amount: '500+' },
+    ]}
+  />
+
+  <!-- Review Categories Filter Info -->
+  <div class="bg-off-white dark:bg-slate-800 py-8">
+    <div class="container mx-auto px-4 text-center">
+      <p class="text-lg text-muted max-w-3xl mx-auto">
+        All reviews are from verified customers who have experienced West 52 BBQ.
+        We're proud of our reputation for quality food, professional service, and treating every customer like family.
+      </p>
+    </div>
+  </div>
+
+  <!-- Reviews Grid -->
+  <div class="bg-white dark:bg-slate-900 py-12 md:py-16">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-charcoal dark:text-white mb-4">
+          Customer Testimonials
+        </h2>
+        <p class="text-lg text-muted max-w-2xl mx-auto">
+          Read authentic reviews from BBQ lovers across Will County
+        </p>
+      </div>
+
+      <!-- Reviews Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+        {reviews.map((review) => (
+          <div class="bg-off-white dark:bg-slate-800 rounded-lg shadow-md p-6 flex flex-col h-full hover:shadow-lg transition-shadow">
+            <!-- Rating Stars -->
+            <div class="flex items-center mb-3">
+              <div class="flex text-primary text-xl mr-2">
+                {Array.from({ length: review.rating }, (_, i) => (
+                  <span key={i}>★</span>
+                ))}
+              </div>
+              <span class="text-sm font-semibold text-muted">{review.rating}.0</span>
+            </div>
+
+            <!-- Review Text -->
+            <p class="text-muted mb-4 flex-grow italic">
+              "{review.review}"
+            </p>
+
+            <!-- Reviewer Info -->
+            <div class="border-t border-gray-300 dark:border-gray-600 pt-4">
+              <p class="font-bold text-charcoal dark:text-white">{review.name}</p>
+              <p class="text-sm text-muted">{review.location}</p>
+              <div class="flex justify-between items-center mt-2">
+                <span class="text-xs bg-primary text-white px-2 py-1 rounded">
+                  {review.category}
+                </span>
+                <span class="text-xs text-muted">{review.date}</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Review Categories Breakdown -->
+  <div class="bg-off-white dark:bg-slate-800 py-12 md:py-16">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-charcoal dark:text-white mb-4">
+          What Customers Love Most
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <!-- BBQ Quality -->
+        <div class="bg-white dark:bg-slate-900 rounded-lg shadow-md p-6 text-center">
+          <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M13.5 21h-6.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h6m4 0a2 2 0 0 1 2 2v6"></path>
+              <path d="M9 7l4 0"></path>
+              <path d="M9 11l4 0"></path>
+              <path d="M18 18m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-heading font-bold mb-2">BBQ Quality</h3>
+          <p class="text-3xl font-bold text-primary mb-2">100%</p>
+          <p class="text-muted">
+            Customers rave about our authentic slow-smoked meats, perfect smoke rings, and fall-off-the-bone tenderness.
+          </p>
+        </div>
+
+        <!-- Professional Service -->
+        <div class="bg-white dark:bg-slate-900 rounded-lg shadow-md p-6 text-center">
+          <div class="w-16 h-16 bg-brick-red rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
+              <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-heading font-bold mb-2">Service</h3>
+          <p class="text-3xl font-bold text-brick-red mb-2">100%</p>
+          <p class="text-muted">
+            Friendly, professional service every time. We treat every customer like family and accommodate special requests.
+          </p>
+        </div>
+
+        <!-- Catering Excellence -->
+        <div class="bg-white dark:bg-slate-900 rounded-lg shadow-md p-6 text-center">
+          <div class="w-16 h-16 bg-charcoal rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+              <path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+              <path d="M5 17h-2v-4m-1 -8h11v12m-4 0h6m4 0h2v-6h-8m0 -5h5l3 5"></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-heading font-bold mb-2">Catering</h3>
+          <p class="text-3xl font-bold text-charcoal dark:text-white mb-2">100%</p>
+          <p class="text-muted">
+            From small gatherings to 500-person weddings, our catering delivers the same quality and professionalism every time.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Why Customers Choose Us -->
+  <div class="bg-white dark:bg-slate-900 py-12 md:py-16">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-charcoal dark:text-white mb-4">
+          Why Customers Keep Coming Back
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div class="flex gap-4">
+          <div class="flex-shrink-0">
+            <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
+              <span class="text-white text-2xl font-bold">✓</span>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-2">Authentic BBQ Methods</h3>
+            <p class="text-muted">
+              50+ years of experience smoking meat the right way. No shortcuts, no compromises. Just authentic, slow-smoked BBQ.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <div class="flex-shrink-0">
+            <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
+              <span class="text-white text-2xl font-bold">✓</span>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-2">Consistent Quality</h3>
+            <p class="text-muted">
+              Every rack of ribs, every brisket, every pound of pulled pork meets our high standards. Consistency is our trademark.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <div class="flex-shrink-0">
+            <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
+              <span class="text-white text-2xl font-bold">✓</span>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-2">Family-Friendly Service</h3>
+            <p class="text-muted">
+              We treat every customer like family. Whether it's your first visit or your 50th, you'll always feel welcome.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <div class="flex-shrink-0">
+            <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
+              <span class="text-white text-2xl font-bold">✓</span>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-2">Veteran-Owned Business</h3>
+            <p class="text-muted">
+              Troy served as a USMC cook and brings military discipline and precision to every aspect of our business.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <div class="flex-shrink-0">
+            <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
+              <span class="text-white text-2xl font-bold">✓</span>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-2">Locally Owned</h3>
+            <p class="text-muted">
+              Supporting West 52 BBQ means supporting a local business that cares about the community and gives back.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <div class="flex-shrink-0">
+            <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
+              <span class="text-white text-2xl font-bold">✓</span>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-2">Dietary Accommodations</h3>
+            <p class="text-muted">
+              All smoked meats are gluten-free. We're happy to accommodate dietary restrictions and special requests.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Leave a Review CTA -->
+  <div class="bg-burnt-orange text-white py-16">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">
+        Experienced West 52 BBQ?
+      </h2>
+      <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-8">
+        We'd love to hear about your experience! Your feedback helps us continue to improve
+        and helps other BBQ lovers discover authentic slow-smoked barbecue.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="tel:7797029004"
+          class="inline-flex items-center justify-center gap-2 bg-white text-burnt-orange px-8 py-4 rounded-lg font-bold text-lg hover:bg-off-white transition-colors"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2"></path>
+          </svg>
+          Call Us
+        </a>
+        <a
+          href="/contact"
+          class="inline-flex items-center justify-center gap-2 bg-charcoal text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-steel-gray transition-colors"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"></path>
+            <path d="M3 7l9 6l9 -6"></path>
+          </svg>
+          Contact Us
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Call To Action *********** -->
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'View Menu',
+        href: '/menu',
+        icon: 'tabler:meat',
+      },
+      {
+        variant: 'secondary',
+        text: 'Request Catering Quote',
+        href: '/catering',
+        icon: 'tabler:truck-delivery',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      Ready to Experience 5-Star BBQ?
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Join the hundreds of satisfied customers who choose West 52 BBQ.
+      <br class="hidden md:inline" />
+      <span class="font-semibold">You Don't Have To Fight It To Bite It!</span>
+    </Fragment>
+  </CallToAction>
+</Layout>

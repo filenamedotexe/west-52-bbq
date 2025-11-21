@@ -1,0 +1,58 @@
+---
+// West 52 BBQ - Brand Fonts
+import '@fontsource-variable/inter'; // Body text
+import '@fontsource/bebas-neue/400.css'; // Headings
+---
+
+<style is:inline>
+  :root {
+    /* West 52 BBQ Typography */
+    --aw-font-sans: 'Inter Variable';
+    --aw-font-serif: 'Inter Variable';
+    --aw-font-heading: 'Bebas Neue';
+
+    /* West 52 BBQ Brand Colors */
+    --aw-color-primary: rgb(255 102 51); /* Burnt Orange #FF6633 */
+    --aw-color-secondary: rgb(200 75 49); /* Brick Red #C84B31 */
+    --aw-color-accent: rgb(139 141 142); /* Steel Gray #8B8D8E */
+
+    /* Text Colors */
+    --aw-color-text-heading: rgb(43 43 43); /* Charcoal Black #2B2B2B */
+    --aw-color-text-default: rgb(43 43 43); /* Charcoal Black #2B2B2B */
+    --aw-color-text-muted: rgb(43 43 43 / 66%); /* Charcoal with opacity */
+
+    /* Background Colors */
+    --aw-color-bg-page: rgb(245 245 245); /* Off-White #F5F5F5 */
+    --aw-color-bg-page-dark: rgb(43 43 43); /* Charcoal Black #2B2B2B */
+
+    ::selection {
+      background-color: rgb(255 102 51 / 30%); /* Burnt Orange tint */
+      color: rgb(43 43 43);
+    }
+  }
+
+  .dark {
+    /* West 52 BBQ Typography - Dark Mode */
+    --aw-font-sans: 'Inter Variable';
+    --aw-font-serif: 'Inter Variable';
+    --aw-font-heading: 'Bebas Neue';
+
+    /* West 52 BBQ Brand Colors - Dark Mode */
+    --aw-color-primary: rgb(255 102 51); /* Burnt Orange #FF6633 */
+    --aw-color-secondary: rgb(200 75 49); /* Brick Red #C84B31 */
+    --aw-color-accent: rgb(139 141 142); /* Steel Gray #8B8D8E */
+
+    /* Text Colors - Dark Mode */
+    --aw-color-text-heading: rgb(245 245 245); /* Off-White #F5F5F5 */
+    --aw-color-text-default: rgb(229 236 246);
+    --aw-color-text-muted: rgb(229 236 246 / 66%);
+
+    /* Background Colors - Dark Mode */
+    --aw-color-bg-page: rgb(43 43 43); /* Charcoal Black #2B2B2B */
+
+    ::selection {
+      background-color: rgb(255 102 51); /* Burnt Orange */
+      color: rgb(245 245 245); /* Off-White */
+    }
+  }
+</style>

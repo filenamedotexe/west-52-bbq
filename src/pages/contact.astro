@@ -1,0 +1,349 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import ContactUs from '~/components/widgets/Contact.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: 'Contact West 52 BBQ | Shorewood, IL | (779) 702-9004 | BBQ Restaurant',
+  description: 'Contact West 52 BBQ in Shorewood, IL. Call (779) 702-9004 for orders, catering quotes, or questions. Open Wed-Sat 11AM-8PM, Sun 12PM-5PM. Serving Will County.',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Section ******************* -->
+  <Hero
+    tagline="Contact Us"
+  >
+    <Fragment slot="title">
+      <span class="font-heading">Get In Touch</span>
+      <br />
+      <span class="text-primary">We're Here to Help</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      <span class="text-lg">
+        Questions about our menu? Need a catering quote? Want to place an order?
+        <span class="block mt-2 font-semibold">Call us at <a href="tel:7797029004" class="text-primary hover:underline">(779) 702-9004</a></span>
+      </span>
+    </Fragment>
+  </Hero>
+
+  <!-- Quick Contact Banner -->
+  <div class="bg-primary text-white py-4">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+        <div>
+          <p class="font-heading text-xl mb-1">Call Us</p>
+          <a href="tel:7797029004" class="text-lg font-bold hover:text-off-white transition">
+            (779) 702-9004
+          </a>
+        </div>
+        <div>
+          <p class="font-heading text-xl mb-1">Visit Us</p>
+          <p class="text-sm">Shorewood, IL 60404</p>
+          <p class="text-xs opacity-90">Serving Will County</p>
+        </div>
+        <div>
+          <p class="font-heading text-xl mb-1">Hours</p>
+          <p class="text-sm">Wed-Sat: 11AM-8PM</p>
+          <p class="text-xs opacity-90">Sun: 12PM-5PM | Closed Mon-Tue</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Form ******************* -->
+  <ContactUs
+    id="contact-form"
+    title="Send Us a Message"
+    subtitle="Have a question? Fill out the form below and we'll get back to you as soon as possible. For immediate assistance, please call us at (779) 702-9004."
+    inputs={[
+      {
+        type: 'text',
+        name: 'name',
+        label: 'Your Name',
+        autocomplete: 'name',
+        placeholder: 'John Smith',
+      },
+      {
+        type: 'email',
+        name: 'email',
+        label: 'Email Address',
+        autocomplete: 'email',
+        placeholder: 'john@example.com',
+      },
+      {
+        type: 'tel',
+        name: 'phone',
+        label: 'Phone Number',
+        autocomplete: 'tel',
+        placeholder: '(779) 702-9004',
+      },
+      {
+        type: 'text',
+        name: 'subject',
+        label: 'Subject',
+        placeholder: 'General Inquiry, Catering, Order Question, etc.',
+      },
+    ]}
+    textarea={{
+      label: 'Your Message',
+      name: 'message',
+      placeholder: 'Tell us how we can help you...',
+      rows: 6,
+    }}
+    disclaimer={{
+      label: 'By submitting this form, you agree to be contacted by West 52 BBQ regarding your inquiry. We respect your privacy and will not share your information with third parties.',
+    }}
+    button="Send Message"
+    description="We typically respond to all inquiries within 24 hours during business days. For urgent requests, please call us directly."
+  />
+
+  <!-- Contact Information ************** -->
+  <Features2
+    title="Other Ways to Reach Us"
+    subtitle="Choose the method that works best for you"
+    items={[
+      {
+        title: 'Call to Order',
+        description: 'The fastest way to place an order or get answers. Our team is ready to help during business hours.',
+        icon: 'tabler:phone',
+      },
+      {
+        title: 'Visit Our Location',
+        description: 'Stop by in person! We\'re located in Shorewood, IL. Come smell the smoke and see our operation.',
+        icon: 'tabler:map-pin',
+      },
+      {
+        title: 'Catering Inquiries',
+        description: 'For catering quotes and event planning, use our catering request form or call us directly to discuss your needs.',
+        icon: 'tabler:truck-delivery',
+      },
+      {
+        title: 'Business Hours',
+        description: 'Wed-Sat: 11:00 AM - 8:00 PM | Sun: 12:00 PM - 5:00 PM | Closed Monday & Tuesday',
+        icon: 'tabler:clock',
+      },
+      {
+        title: 'Phone',
+        description: '(779) 702-9004',
+        icon: 'tabler:headset',
+      },
+      {
+        title: 'Location',
+        description: 'Shorewood, IL 60404 | Serving Will County & surrounding areas',
+        icon: 'tabler:map-2',
+      },
+    ]}
+  />
+
+  <!-- Map Section -->
+  <div class="bg-off-white dark:bg-slate-800 py-12 md:py-16">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-charcoal dark:text-white mb-4">
+          Find Us in Shorewood, IL
+        </h2>
+        <p class="text-lg text-muted max-w-2xl mx-auto">
+          Located in Shorewood, IL, we proudly serve Will County including Joliet, Plainfield, Romeoville, Lockport, and Channahon.
+        </p>
+      </div>
+
+      <!-- Map Placeholder - Replace with actual Google Maps embed -->
+      <div class="max-w-4xl mx-auto">
+        <div class="bg-white dark:bg-slate-900 rounded-lg shadow-lg overflow-hidden" style="height: 450px;">
+          <!-- Google Maps Embed - Update with actual address when available -->
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d95262.87424066938!2d-88.2615!3d41.5200!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e58d5e47b7b0b%3A0x4b7b7b7b7b7b7b7b!2sShorewood%2C%20IL%2060404!5e0!3m2!1sen!2sus!4v1234567890"
+            width="100%"
+            height="450"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="West 52 BBQ Location in Shorewood, IL"
+          ></iframe>
+        </div>
+
+        <div class="mt-6 text-center">
+          <a
+            href="https://www.google.com/maps/dir//Shorewood,+IL+60404"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-brick-red transition-colors"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
+              <path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z"></path>
+            </svg>
+            Get Directions
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Serving Areas -->
+  <div class="bg-white dark:bg-slate-900 py-12 md:py-16">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-charcoal dark:text-white mb-4">
+          Proudly Serving Will County
+        </h2>
+        <p class="text-lg text-muted max-w-2xl mx-auto">
+          West 52 BBQ is your local BBQ destination serving communities throughout Will County and surrounding areas.
+        </p>
+      </div>
+
+      <div class="max-w-4xl mx-auto">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 text-center">
+          <div class="bg-off-white dark:bg-slate-800 rounded-lg p-4">
+            <p class="font-semibold text-charcoal dark:text-white">Shorewood</p>
+            <p class="text-sm text-muted">Our Home</p>
+          </div>
+          <div class="bg-off-white dark:bg-slate-800 rounded-lg p-4">
+            <p class="font-semibold text-charcoal dark:text-white">Joliet</p>
+            <p class="text-sm text-muted">10 min away</p>
+          </div>
+          <div class="bg-off-white dark:bg-slate-800 rounded-lg p-4">
+            <p class="font-semibold text-charcoal dark:text-white">Plainfield</p>
+            <p class="text-sm text-muted">12 min away</p>
+          </div>
+          <div class="bg-off-white dark:bg-slate-800 rounded-lg p-4">
+            <p class="font-semibold text-charcoal dark:text-white">Romeoville</p>
+            <p class="text-sm text-muted">15 min away</p>
+          </div>
+          <div class="bg-off-white dark:bg-slate-800 rounded-lg p-4">
+            <p class="font-semibold text-charcoal dark:text-white">Lockport</p>
+            <p class="text-sm text-muted">8 min away</p>
+          </div>
+          <div class="bg-off-white dark:bg-slate-800 rounded-lg p-4">
+            <p class="font-semibold text-charcoal dark:text-white">Channahon</p>
+            <p class="text-sm text-muted">12 min away</p>
+          </div>
+          <div class="bg-off-white dark:bg-slate-800 rounded-lg p-4">
+            <p class="font-semibold text-charcoal dark:text-white">Minooka</p>
+            <p class="text-sm text-muted">15 min away</p>
+          </div>
+          <div class="bg-off-white dark:bg-slate-800 rounded-lg p-4">
+            <p class="font-semibold text-charcoal dark:text-white">Crest Hill</p>
+            <p class="text-sm text-muted">10 min away</p>
+          </div>
+          <div class="bg-off-white dark:bg-slate-800 rounded-lg p-4">
+            <p class="font-semibold text-charcoal dark:text-white">Bolingbrook</p>
+            <p class="text-sm text-muted">18 min away</p>
+          </div>
+          <div class="bg-off-white dark:bg-slate-800 rounded-lg p-4">
+            <p class="font-semibold text-charcoal dark:text-white">New Lenox</p>
+            <p class="text-sm text-muted">10 min away</p>
+          </div>
+        </div>
+
+        <p class="text-center text-muted mt-8">
+          Don't see your city listed? We likely serve your area! Call us at
+          <a href="tel:7797029004" class="text-primary hover:underline font-semibold">(779) 702-9004</a>
+          to confirm delivery or catering availability.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ Section -->
+  <div class="bg-off-white dark:bg-slate-800 py-12 md:py-16">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-charcoal dark:text-white mb-4">
+          Common Questions
+        </h2>
+      </div>
+
+      <div class="max-w-3xl mx-auto space-y-4">
+        <details class="bg-white dark:bg-slate-900 rounded-lg shadow-md p-6 group">
+          <summary class="font-semibold text-lg cursor-pointer list-none flex justify-between items-center">
+            <span>What are your hours of operation?</span>
+            <span class="text-primary text-xl group-open:rotate-45 transition-transform">+</span>
+          </summary>
+          <p class="text-muted mt-4">
+            We're open Wednesday through Saturday from 11:00 AM to 8:00 PM, and Sunday from 12:00 PM to 5:00 PM.
+            We're closed Monday and Tuesday to prep and smoke our meats fresh for the week.
+          </p>
+        </details>
+
+        <details class="bg-white dark:bg-slate-900 rounded-lg shadow-md p-6 group">
+          <summary class="font-semibold text-lg cursor-pointer list-none flex justify-between items-center">
+            <span>Can I place an order for pickup?</span>
+            <span class="text-primary text-xl group-open:rotate-45 transition-transform">+</span>
+          </summary>
+          <p class="text-muted mt-4">
+            Absolutely! Call us at (779) 702-9004 to place your order ahead of time. We'll have it ready when you arrive.
+            Calling ahead is highly recommended, especially during peak hours (lunch and dinner).
+          </p>
+        </details>
+
+        <details class="bg-white dark:bg-slate-900 rounded-lg shadow-md p-6 group">
+          <summary class="font-semibold text-lg cursor-pointer list-none flex justify-between items-center">
+            <span>Do you offer delivery?</span>
+            <span class="text-primary text-xl group-open:rotate-45 transition-transform">+</span>
+          </summary>
+          <p class="text-muted mt-4">
+            For individual orders, we recommend pickup. However, we offer delivery for catering orders depending on
+            location and order size. Call us to discuss your specific needs.
+          </p>
+        </details>
+
+        <details class="bg-white dark:bg-slate-900 rounded-lg shadow-md p-6 group">
+          <summary class="font-semibold text-lg cursor-pointer list-none flex justify-between items-center">
+            <span>How do I request a catering quote?</span>
+            <span class="text-primary text-xl group-open:rotate-45 transition-transform">+</span>
+          </summary>
+          <p class="text-muted mt-4">
+            Visit our <a href="/catering" class="text-primary hover:underline font-semibold">Catering page</a> to fill
+            out a detailed request form, or call us directly at (779) 702-9004 to discuss your event with Troy.
+          </p>
+        </details>
+
+        <details class="bg-white dark:bg-slate-900 rounded-lg shadow-md p-6 group">
+          <summary class="font-semibold text-lg cursor-pointer list-none flex justify-between items-center">
+            <span>Where exactly are you located in Shorewood?</span>
+            <span class="text-primary text-xl group-open:rotate-45 transition-transform">+</span>
+          </summary>
+          <p class="text-muted mt-4">
+            We're located in Shorewood, IL 60404. For the exact address and directions, please call us at (779) 702-9004
+            or use the map above to get directions.
+          </p>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <!-- Call To Action *********** -->
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Call (779) 702-9004',
+        href: 'tel:7797029004',
+        icon: 'tabler:phone',
+      },
+      {
+        variant: 'secondary',
+        text: 'View Menu',
+        href: '/menu',
+        icon: 'tabler:meat',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      Ready to Experience Real BBQ?
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Call ahead to place your order or stop by during business hours.
+      <br class="hidden md:inline" />
+      <span class="font-semibold">You Don't Have To Fight It To Bite It!</span>
+    </Fragment>
+  </CallToAction>
+</Layout>

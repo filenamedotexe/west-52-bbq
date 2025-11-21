@@ -1,0 +1,331 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features from '~/components/widgets/Features.astro';
+import Content from '~/components/widgets/Content.astro';
+import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import troyImage from '~/assets/images/Photo Of Troy.jpg';
+import buildingImage from '~/assets/images/West 52 BBQ Building Exterior.webp';
+
+// Fetch featured menu items from collection
+const allMenuItems = await getCollection('menu');
+const featuredMenuItems = allMenuItems
+  .filter(item => item.data.featured)
+  .slice(0, 4)
+  .map(item => ({
+    title: item.data.name,
+    description: `${item.data.description} $${item.data.price.toFixed(2)}`,
+    icon: item.data.category === 'smoked-meats' ? 'tabler:meat' :
+          item.data.category === 'combo-platters' ? 'tabler:trophy' :
+          item.data.category === 'sandwiches' ? 'tabler:bread' :
+          item.data.category === 'sides' ? 'tabler:soup' : 'tabler:grill',
+  }));
+
+// Add catering as last item (not from collection)
+const menuFeaturesItems = [
+  ...featuredMenuItems,
+  {
+    title: 'House-Made Sides',
+    description: 'Creamy mac and cheese, tangy coleslaw, baked beans, collard greens, and fresh cornbread. Made from scratch daily.',
+    icon: 'tabler:soup',
+  },
+  {
+    title: 'BBQ Catering',
+    description: 'Catering for events of all sizes. Family gatherings, corporate events, weddings, and more. Call for a quote!',
+    icon: 'tabler:truck-delivery',
+  },
+];
+
+const metadata = {
+  title: 'West 52 BBQ | Authentic BBQ in Shorewood, IL | You Don\'t Have To Fight It To Bite It',
+  description: 'Authentic slow-smoked BBQ in Shorewood, IL. 50+ years experience. USMC veteran owned. Serving Will County with tender brisket, ribs, and pulled pork. Catering available.',
+  ignoreTitleTemplate: true,
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Modern Hero Section - Nov 2025 Design ******************* -->
+  <section class="relative min-h-[85vh] md:min-h-[90vh] flex items-center justify-center overflow-hidden">
+    <!-- Background Image with Overlay -->
+    <div class="absolute inset-0">
+      <Image
+        src={buildingImage}
+        alt="West 52 BBQ Restaurant Exterior in Shorewood, IL"
+        class="w-full h-full object-cover"
+        loading="eager"
+        widths={[400, 800, 1200, 1600]}
+        sizes="100vw"
+      />
+      <!-- Dark gradient overlay for text readability -->
+      <div class="absolute inset-0 bg-gradient-to-b from-charcoal/70 via-charcoal/50 to-charcoal/80"></div>
+    </div>
+
+    <!-- Hero Content -->
+    <div class="relative z-10 container mx-auto px-4 text-center">
+      <!-- Tagline -->
+      <p class="text-burnt-orange font-heading text-lg md:text-xl tracking-widest uppercase mb-4">
+        Shorewood, IL • Est. 50+ Years
+      </p>
+
+      <!-- Main Headline - Large & Bold -->
+      <h1 class="font-heading text-white leading-none mb-6">
+        <span class="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl">
+          You Don't Have To
+        </span>
+        <span class="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl text-burnt-orange">
+          Fight It To Bite It!
+        </span>
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="text-white/90 text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto mb-8 leading-relaxed">
+        Authentic slow-smoked BBQ. <span class="text-burnt-orange font-semibold">50+ years of experience.</span>
+        <br class="hidden sm:block" />
+        USMC Veteran owned. Serving Will County.
+      </p>
+
+      <!-- CTA Buttons - Large & Prominent -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a
+          href="/menu"
+          class="group inline-flex items-center gap-3 bg-burnt-orange hover:bg-brick-red text-white font-bold text-lg md:text-xl px-8 py-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M13.62 8.382l1.966 -1.967a2 2 0 1 1 3.414 -1.415a2 2 0 1 1 -1.413 3.414l-1.82 1.821"></path>
+            <path d="M5.904 18.596c2.733 2.734 5.9 4 7.07 2.829c1.172 -1.172 -.094 -4.338 -2.828 -7.071c-2.733 -2.734 -5.9 -4 -7.07 -2.829c-1.172 1.172 .094 4.338 2.828 7.071z"></path>
+          </svg>
+          View Our Menu
+        </a>
+        <a
+          href="tel:7797029004"
+          class="group inline-flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white font-bold text-lg md:text-xl px-8 py-4 rounded-lg border-2 border-white/30 hover:border-white/50 transition-all duration-300"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2"></path>
+          </svg>
+          (779) 702-9004
+        </a>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white/60" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+          <path d="M6 9l6 6l6 -6"></path>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hours & Contact Info ******************* -->
+  <div class="bg-primary text-white py-4">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+        <div>
+          <p class="font-heading text-xl mb-1">Hours</p>
+          <p class="text-sm">Wed-Sat: 11AM-8PM | Sun: 12PM-5PM</p>
+          <p class="text-xs opacity-90">Closed Mon-Tue</p>
+        </div>
+        <div>
+          <p class="font-heading text-xl mb-1">Call Ahead</p>
+          <a href="tel:7797029004" class="text-lg font-bold hover:text-off-white transition">(779) 702-9004</a>
+        </div>
+        <div>
+          <p class="font-heading text-xl mb-1">Location</p>
+          <p class="text-sm">Shorewood, IL 60404</p>
+          <p class="text-xs opacity-90">Serving Will County</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Featured Menu Items (Pulled from Collection) *************** -->
+  <Features
+    id="menu"
+    tagline="Our Signature Smoked Meats"
+    title="What Makes West 52 BBQ Special"
+    subtitle="Every dish is smoked low and slow using traditional methods perfected over 50 years. Real BBQ takes time—and we don't cut corners."
+    items={menuFeaturesItems}
+  />
+
+  <!-- About Troy Preview **************** -->
+  <Content
+    isReversed
+    tagline="Meet Troy"
+    title="50+ Years of BBQ Excellence"
+    items={[
+      {
+        title: 'USMC Veteran',
+        description: 'Served as a cook in the United States Marine Corps (MOS 3381, 1983-1989). Military precision meets BBQ perfection.',
+      },
+      {
+        title: '5 Decades of Experience',
+        description: 'Troy has been cooking, BBQing, and catering for over 50 years. Every smoke is a masterclass in patience and technique.',
+      },
+      {
+        title: 'Family Values',
+        description: 'Proud husband and dad who treats every customer like family. West 52 BBQ is built on community and quality.',
+      },
+    ]}
+    image={{
+      src: troyImage,
+      alt: 'Troy Johnson - Owner of West 52 BBQ, USMC Veteran',
+      width: 800,
+      height: 600,
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-heading font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
+        USMC Veteran with 50+ Years Experience
+      </h3>
+      <p class="text-muted">
+        Troy Johnson isn't just any pit master. After serving his country as a Marine Corps cook, he's spent five decades perfecting the art of smoking meat. His motto says it all: "You Don't Have To Fight It To Bite It!"
+      </p>
+      <p class="mt-4">
+        <a href="/about" class="btn btn-primary">Read Troy's Story</a>
+      </p>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-off-white dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Why Choose Us **************** -->
+  <Features
+    id="why-choose-us"
+    tagline="The West 52 Difference"
+    title="Why Will County Chooses West 52 BBQ"
+    subtitle="We're not just another BBQ restaurant. We're a veteran-owned business built on tradition, quality, and community."
+    items={[
+      {
+        title: 'No Shortcuts',
+        description: 'Brisket: 14+ hours. Ribs: 6 hours. Pulled Pork: 10+ hours. Real BBQ can\'t be rushed.',
+        icon: 'tabler:clock',
+      },
+      {
+        title: 'USMC Quality Standards',
+        description: 'Military-grade attention to detail. Consistency. Excellence. No exceptions.',
+        icon: 'tabler:shield-check',
+      },
+      {
+        title: 'Gluten-Free Options',
+        description: 'All smoked meats are naturally gluten-free. Dietary accommodations available.',
+        icon: 'tabler:leaf',
+      },
+      {
+        title: 'Family-Friendly',
+        description: 'Kid-friendly menu, generous portions, and sides the whole family will love.',
+        icon: 'tabler:users',
+      },
+      {
+        title: 'Local Business',
+        description: 'Veteran-owned, family-operated. When you eat at West 52 BBQ, you support local.',
+        icon: 'tabler:home-heart',
+      },
+      {
+        title: 'Catering Services',
+        description: 'From small gatherings to large events. We bring authentic BBQ to your celebration.',
+        icon: 'tabler:calendar-event',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-off-white dark:bg-slate-800"></div>
+    </Fragment>
+  </Features>
+
+  <!-- Stats ****************** -->
+  <Stats
+    title="By the Numbers"
+    stats={[
+      { title: 'Years Experience', amount: '50+' },
+      { title: 'Hours to Smoke Brisket', amount: '14+' },
+      { title: 'USMC Service', amount: '1983-1989' },
+      { title: 'Customer Satisfaction', amount: '100%' },
+    ]}
+  />
+
+  <!-- Latest Blog Posts ******* -->
+  <BlogLatestPosts
+    title="BBQ Tips & Techniques"
+    information="Learn from Troy's 50+ years of BBQ experience. From smoking basics to competition techniques, our blog shares the secrets of great barbecue."
+  />
+
+  <!-- FAQs ******************* -->
+  <FAQs
+    title="Frequently Asked Questions"
+    subtitle="Everything you need to know about West 52 BBQ"
+    tagline="FAQs"
+    classes={{ container: 'max-w-6xl' }}
+    items={[
+      {
+        title: 'What are your hours?',
+        description: 'We\'re open Wednesday-Saturday from 11:00 AM to 8:00 PM, and Sunday from 12:00 PM to 5:00 PM. Closed Monday and Tuesday.',
+      },
+      {
+        title: 'Do you offer catering?',
+        description: 'Yes! We cater events of all sizes—from family gatherings to corporate events and weddings. Call (779) 702-9004 for a custom quote.',
+      },
+      {
+        title: 'Do you have gluten-free options?',
+        description: 'All of our smoked meats (brisket, ribs, pulled pork) are naturally gluten-free. Many of our sides are also gluten-free. Just ask!',
+      },
+      {
+        title: 'Can I call ahead for faster service?',
+        description: 'Absolutely! Call (779) 702-9004 to place your order ahead of time. We\'ll have it ready when you arrive.',
+      },
+      {
+        title: 'What makes your BBQ different?',
+        description: 'Troy has 50+ years of experience and uses traditional smoking methods. We smoke our brisket for 14+ hours, ribs for 6 hours, and pulled pork for 10+ hours. No shortcuts, no compromises.',
+      },
+      {
+        title: 'Do you deliver?',
+        description: 'We currently offer catering for events. For individual orders, we recommend calling ahead for pickup. Delivery options may be available for catering orders—call for details.',
+      },
+      {
+        title: 'What areas do you serve?',
+        description: 'We\'re located in Shorewood, IL and proudly serve all of Will County including Joliet, Plainfield, Romeoville, Lockport, and Channahon.',
+      },
+      {
+        title: 'What does "You Don\'t Have To Fight It To Bite It" mean?',
+        description: 'It\'s our promise! Our meat is smoked so long and so carefully that it\'s fall-apart tender. You won\'t need a knife—it\'s that tender.',
+      },
+    ]}
+  />
+
+  <!-- Call To Action *********** -->
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'View Full Menu',
+        href: '/menu',
+        icon: 'tabler:meat',
+      },
+      {
+        variant: 'secondary',
+        text: 'Call (779) 702-9004',
+        href: 'tel:7797029004',
+        icon: 'tabler:phone',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      Ready for Real BBQ?
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Visit West 52 BBQ in Shorewood, IL or call ahead for faster service.
+      <br class="hidden md:inline" />
+      <span class="font-semibold">You Don't Have To Fight It To Bite It!</span>
+    </Fragment>
+  </CallToAction>
+</Layout>

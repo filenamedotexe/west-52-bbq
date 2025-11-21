@@ -1,0 +1,218 @@
+---
+import Content from '~/components/widgets/Content.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import Features from '~/components/widgets/Features.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import Layout from '~/layouts/PageLayout.astro';
+import troyImage from '~/assets/images/Photo Of Troy.jpg';
+
+const metadata = {
+  title: 'About West 52 BBQ | Troy Johnson - USMC Veteran | 50+ Years BBQ Experience',
+  description: 'Meet Troy Johnson, USMC veteran with 50+ years of BBQ experience. Learn the story behind West 52 BBQ and our commitment to authentic slow-smoked barbecue in Shorewood, IL.',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Section ******************* -->
+  <Hero
+    tagline="About West 52 BBQ"
+    image={{
+      src: troyImage,
+      alt: 'Troy Johnson - Owner of West 52 BBQ, USMC Veteran',
+    }}
+  >
+    <Fragment slot="title">
+      <span class="font-heading">50+ Years of BBQ Excellence</span>
+      <br />
+      <span class="text-primary">USMC Veteran. Pit Master. Family Man.</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      <span class="text-lg">
+        Troy Johnson isn't just any pit master. After serving his country as a Marine Corps cook,
+        he's spent five decades perfecting the art of smoking meat. His motto says it all:
+        <span class="font-semibold">"You Don't Have To Fight It To Bite It!"</span>
+      </span>
+    </Fragment>
+  </Hero>
+
+  <!-- Troy's Story ******************* -->
+  <Content
+    id="story"
+    isReversed
+    title="Troy's Story"
+    items={[
+      {
+        title: 'Early Beginnings',
+        description: 'Troy\'s love for cooking started young, learning traditional smoking techniques and family recipes that would become the foundation of West 52 BBQ.',
+      },
+      {
+        title: 'USMC Service (1983-1989)',
+        description: 'Troy served his country as a cook in the United States Marine Corps (MOS 3381). Military service taught him discipline, precision, and the importance of consistency—values he brings to every smoke.',
+      },
+      {
+        title: '50+ Years of Mastery',
+        description: 'After the Marines, Troy dedicated himself to perfecting BBQ. Decades of cooking, experimenting, and catering have made him a true master of the craft.',
+      },
+    ]}
+    image={{
+      src: troyImage,
+      alt: 'Troy Johnson - USMC Veteran and BBQ Pit Master',
+      width: 800,
+      height: 600,
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-4">
+        From Marines to Meats
+      </h3>
+      <p class="text-muted mb-4">
+        Troy Johnson's journey to becoming one of Illinois' most respected pit masters began in the United States Marine Corps.
+        Serving as a cook (MOS 3381) from 1983 to 1989, Troy learned the value of precision, consistency, and never compromising on quality.
+      </p>
+      <p class="text-muted mb-4">
+        After his service, Troy applied those same military standards to his true passion: BBQ. Over 50 years of cooking, smoking,
+        and catering have turned him into a master craftsman. Every brisket, every rack of ribs, every pound of pulled pork is smoked
+        with the same attention to detail he learned in the Marines.
+      </p>
+      <p class="text-muted">
+        Today, Troy is a proud husband and father who runs West 52 BBQ with his family. His commitment to quality BBQ and treating
+        every customer like family has made West 52 BBQ a favorite in Will County and beyond.
+      </p>
+    </Fragment>
+  </Content>
+
+  <!-- What Makes Us Different ******************* -->
+  <Features
+    id="what-makes-us-different"
+    title="What Makes West 52 BBQ Different"
+    subtitle="After 50 years in the BBQ business, Troy knows what separates great BBQ from mediocre. Here's what sets us apart."
+    items={[
+      {
+        title: 'Real Smoking Times',
+        description: 'We smoke our brisket for 14+ hours, ribs for 6 hours, and pulled pork for 10+ hours. Real BBQ can\'t be rushed, and we refuse to take shortcuts.',
+        icon: 'tabler:clock-hour-3',
+      },
+      {
+        title: 'USMC-Grade Standards',
+        description: 'Military discipline meets BBQ artistry. Troy applies the same precision and consistency he learned in the Marines to every smoke.',
+        icon: 'tabler:shield-check',
+      },
+      {
+        title: 'Traditional Methods',
+        description: 'We use time-tested smoking techniques passed down through generations. Hickory and oak wood, low and slow temperatures, and patience.',
+        icon: 'tabler:grill',
+      },
+      {
+        title: 'No Compromises',
+        description: 'We source quality meats, make our sides from scratch daily, and never cut corners. If it\'s not perfect, it doesn\'t leave our kitchen.',
+        icon: 'tabler:award',
+      },
+      {
+        title: 'Family-Owned & Operated',
+        description: 'West 52 BBQ is a family business. When you order from us, you\'re supporting a local, veteran-owned operation that treats customers like family.',
+        icon: 'tabler:users',
+      },
+      {
+        title: 'Community Focused',
+        description: 'We\'re proud to serve Will County. From Shorewood to Joliet, Plainfield to Lockport, we\'re your neighbors who happen to make incredible BBQ.',
+        icon: 'tabler:home-heart',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-off-white dark:bg-transparent"></div>
+    </Fragment>
+  </Features>
+
+  <!-- Stats ****************** -->
+  <Stats
+    title="Troy's Journey in Numbers"
+    stats={[
+      { title: 'Years of Experience', amount: '50+' },
+      { title: 'Years USMC Service', amount: '6' },
+      { title: 'Hours to Smoke Brisket', amount: '14+' },
+      { title: 'Family Recipes', amount: '100s' },
+    ]}
+  />
+
+  <!-- Our Values ******************* -->
+  <Content
+    isAfterContent
+    title="Our Core Values"
+    items={[
+      {
+        title: 'Quality Over Speed',
+        description: 'We take the time to do it right. Every smoke follows traditional methods that can\'t be rushed.',
+      },
+      {
+        title: 'Honoring Tradition',
+        description: 'From military service to family recipes, we honor the traditions that make great BBQ possible.',
+      },
+      {
+        title: 'Treating Customers Like Family',
+        description: 'Every customer gets the same quality and care Troy would give his own family. No exceptions.',
+      },
+      {
+        title: 'Supporting Our Community',
+        description: 'We\'re proud to be part of Will County. We source locally when possible and give back to our community.',
+      },
+    ]}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
+        Built on Values That Matter
+      </h3>
+      <p>
+        West 52 BBQ isn't just about great food—it's about doing things the right way. The way Troy learned in the Marines.
+        The way his family taught him. The way BBQ was meant to be made.
+      </p>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-off-white dark:bg-slate-800"></div>
+    </Fragment>
+  </Content>
+
+  <!-- The Slogan ******************* -->
+  <div class="bg-primary text-white py-16">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-4xl md:text-5xl font-heading font-bold mb-4">
+        "You Don't Have To Fight It To Bite It"
+      </h2>
+      <p class="text-xl md:text-2xl max-w-3xl mx-auto">
+        This isn't just our slogan—it's our promise. After 50+ years perfecting our craft,
+        Troy knows how to make meat so tender it practically melts in your mouth. No fighting. No sawing. Just pure BBQ bliss.
+      </p>
+    </div>
+  </div>
+
+  <!-- Call To Action *********** -->
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'View Our Menu',
+        href: '/menu',
+        icon: 'tabler:meat',
+      },
+      {
+        variant: 'secondary',
+        text: 'Call (779) 702-9004',
+        href: 'tel:7797029004',
+        icon: 'tabler:phone',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      Ready to Taste 50 Years of Experience?
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Visit West 52 BBQ in Shorewood, IL or call ahead for faster service.
+      <br class="hidden md:inline" />
+      Open Wed-Sat 11AM-8PM, Sun 12PM-5PM
+    </Fragment>
+  </CallToAction>
+</Layout>

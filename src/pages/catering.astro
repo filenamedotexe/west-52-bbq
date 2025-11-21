@@ -1,0 +1,449 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features from '~/components/widgets/Features.astro';
+import ContactUs from '~/components/widgets/Contact.astro';
+import Content from '~/components/widgets/Content.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import troyImage from '~/assets/images/Photo Of Troy.jpg';
+
+const metadata = {
+  title: 'BBQ Catering Services | West 52 BBQ | Shorewood, IL | Events & Parties',
+  description: 'Professional BBQ catering in Shorewood, IL and Will County. Perfect for weddings, corporate events, family gatherings. 50+ years experience. Call (779) 702-9004 for quote.',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Section ******************* -->
+  <Hero
+    tagline="Catering Services"
+    image={{
+      src: troyImage,
+      alt: 'Troy Johnson - West 52 BBQ Catering Expert',
+    }}
+  >
+    <Fragment slot="title">
+      <span class="font-heading">BBQ Catering That</span>
+      <br />
+      <span class="text-primary">Feeds Your Crowd Right</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      <span class="text-lg">
+        From intimate family gatherings to large corporate events, West 52 BBQ brings
+        <span class="font-semibold">50+ years of catering experience</span> to your celebration.
+        <span class="block mt-2">Authentic slow-smoked BBQ that'll have your guests talking for years.</span>
+      </span>
+    </Fragment>
+  </Hero>
+
+  <!-- Catering Notice Banner -->
+  <div class="bg-burnt-orange text-white py-4">
+    <div class="container mx-auto px-4 text-center">
+      <p class="text-base md:text-lg">
+        <strong>Book Your Event Today:</strong> Call <a href="tel:7797029004" class="font-bold hover:underline">(779) 702-9004</a>
+        <span class="mx-2">•</span>
+        Serving Will County & Surrounding Areas
+      </p>
+    </div>
+  </div>
+
+  <!-- What We Offer ******************* -->
+  <Features
+    id="catering-options"
+    tagline="Catering Options"
+    title="Everything You Need for Your Event"
+    subtitle="Whether it's a wedding, corporate lunch, family reunion, or backyard party, we've got you covered with authentic BBQ and professional service."
+    items={[
+      {
+        title: 'Full-Service Catering',
+        description: 'Complete setup, serving, and cleanup. We handle everything so you can enjoy your event. Includes chafers, serving utensils, and professional staff.',
+        icon: 'tabler:chef-hat',
+      },
+      {
+        title: 'Drop-Off Catering',
+        description: 'Hot, ready-to-serve BBQ delivered to your location. Perfect for casual gatherings where you want to serve your own way. Includes all serving equipment.',
+        icon: 'tabler:truck-delivery',
+      },
+      {
+        title: 'Pick-Up Orders',
+        description: 'Large orders packaged and ready for pickup. Great for smaller events or when you\'re close by. Call ahead and we\'ll have everything ready.',
+        icon: 'tabler:shopping-bag',
+      },
+      {
+        title: 'Custom Menu Planning',
+        description: 'Work directly with Troy to create a custom menu that fits your event, budget, and dietary needs. Gluten-free and special accommodations available.',
+        icon: 'tabler:checklist',
+      },
+      {
+        title: 'Corporate Events',
+        description: 'Impress your team or clients with authentic BBQ. We\'ve catered company picnics, client appreciation events, and office lunches throughout Will County.',
+        icon: 'tabler:briefcase',
+      },
+      {
+        title: 'Weddings & Private Events',
+        description: 'Make your special day unforgettable with BBQ done right. From rehearsal dinners to wedding receptions, we bring elegance to BBQ catering.',
+        icon: 'tabler:heart',
+      },
+    ]}
+  />
+
+  <!-- Popular Catering Packages **************** -->
+  <div class="bg-off-white dark:bg-slate-800 py-12 md:py-16">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-charcoal dark:text-white mb-4">
+          Popular Catering Packages
+        </h2>
+        <p class="text-lg text-muted max-w-3xl mx-auto">
+          All packages include your choice of smoked meats, house-made sides, cornbread, BBQ sauce,
+          and all necessary serving equipment. Pricing based on headcount and menu selections.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <!-- Package 1: The Classic -->
+        <div class="bg-white dark:bg-slate-900 rounded-lg shadow-lg p-6 border-t-4 border-primary">
+          <h3 class="text-2xl font-heading font-bold mb-2">The Classic BBQ</h3>
+          <p class="text-sm text-primary font-semibold mb-4">Perfect for casual gatherings</p>
+
+          <div class="mb-6">
+            <p class="text-3xl font-bold text-charcoal dark:text-white">$16-18<span class="text-lg text-muted">/person</span></p>
+            <p class="text-sm text-muted">Minimum 25 people</p>
+          </div>
+
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-start">
+              <span class="text-primary mr-2">✓</span>
+              <span>Choice of 2 smoked meats (brisket, pulled pork, or ribs)</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-primary mr-2">✓</span>
+              <span>3 house-made sides</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-primary mr-2">✓</span>
+              <span>Fresh cornbread</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-primary mr-2">✓</span>
+              <span>BBQ sauces & condiments</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-primary mr-2">✓</span>
+              <span>Disposable plates, utensils, napkins</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Package 2: The Deluxe -->
+        <div class="bg-white dark:bg-slate-900 rounded-lg shadow-lg p-6 border-t-4 border-brick-red transform md:scale-105">
+          <div class="text-center mb-2">
+            <span class="inline-block bg-primary text-white px-3 py-1 rounded-full text-xs font-bold">MOST POPULAR</span>
+          </div>
+          <h3 class="text-2xl font-heading font-bold mb-2">The Deluxe Feast</h3>
+          <p class="text-sm text-primary font-semibold mb-4">Our most popular package</p>
+
+          <div class="mb-6">
+            <p class="text-3xl font-bold text-charcoal dark:text-white">$22-25<span class="text-lg text-muted">/person</span></p>
+            <p class="text-sm text-muted">Minimum 25 people</p>
+          </div>
+
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-start">
+              <span class="text-primary mr-2">✓</span>
+              <span>Choice of 3 smoked meats</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-primary mr-2">✓</span>
+              <span>4 premium sides</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-primary mr-2">✓</span>
+              <span>Fresh cornbread & dinner rolls</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-primary mr-2">✓</span>
+              <span>BBQ sauces, pickles, onions</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-primary mr-2">✓</span>
+              <span>Choice of dessert (cobbler or banana pudding)</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-primary mr-2">✓</span>
+              <span>Full setup & serving equipment</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Package 3: The Premium -->
+        <div class="bg-white dark:bg-slate-900 rounded-lg shadow-lg p-6 border-t-4 border-charcoal">
+          <h3 class="text-2xl font-heading font-bold mb-2">The Premium Experience</h3>
+          <p class="text-sm text-primary font-semibold mb-4">Full-service luxury catering</p>
+
+          <div class="mb-6">
+            <p class="text-3xl font-bold text-charcoal dark:text-white">$30-35<span class="text-lg text-muted">/person</span></p>
+            <p class="text-sm text-muted">Minimum 50 people</p>
+          </div>
+
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-start">
+              <span class="text-primary mr-2">✓</span>
+              <span>All smoked meats (brisket, ribs, pulled pork, sausage)</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-primary mr-2">✓</span>
+              <span>5 premium sides of your choice</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-primary mr-2">✓</span>
+              <span>Appetizers (smoked wings or burnt ends)</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-primary mr-2">✓</span>
+              <span>Premium desserts & beverages</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-primary mr-2">✓</span>
+              <span>Professional staff for serving</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-primary mr-2">✓</span>
+              <span>Full setup, service, and cleanup</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-primary mr-2">✓</span>
+              <span>Upgraded serving ware & presentation</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="text-center text-muted mt-8 text-sm">
+        *Pricing varies based on final headcount, menu selections, service type, and event location.
+        Call <a href="tel:7797029004" class="text-primary hover:underline font-semibold">(779) 702-9004</a> for accurate quote.
+      </p>
+    </div>
+  </div>
+
+  <!-- Catering Menu Options ************** -->
+  <Content
+    title="Build Your Custom Menu"
+    items={[
+      {
+        title: 'Smoked Meats',
+        description: 'Beef Brisket (14+ hours), Baby Back Ribs (6 hours), Pulled Pork (10+ hours), Smoked Sausage, Smoked Chicken, Smoked Turkey Breast',
+      },
+      {
+        title: 'House-Made Sides',
+        description: 'Mac & Cheese, Coleslaw, Baked Beans, Collard Greens, Potato Salad, Green Beans, Corn on the Cob, Fried Okra, Candied Yams',
+      },
+      {
+        title: 'Breads & Desserts',
+        description: 'Fresh Cornbread, Dinner Rolls, Texas Toast, Peach Cobbler, Banana Pudding, Pecan Pie, Bread Pudding',
+      },
+      {
+        title: 'Add-Ons & Extras',
+        description: 'Smoked Wings, Burnt Ends, BBQ Nachos, Loaded Baked Potatoes, Caesar Salad, Garden Salad, Sweet Tea, Lemonade',
+      },
+    ]}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
+        Every Menu Is Customizable
+      </h3>
+      <p class="text-muted">
+        Work with Troy to create the perfect menu for your event. All meats are slow-smoked using traditional methods.
+        Sides are made fresh daily from scratch. We accommodate dietary restrictions and special requests.
+      </p>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-off-white dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Request a Quote Form ************* -->
+  <ContactUs
+    id="catering-form"
+    title="Request Your Catering Quote"
+    subtitle="Fill out the form below and we'll get back to you within 24 hours with a custom quote for your event. For immediate assistance, call (779) 702-9004."
+    inputs={[
+      {
+        type: 'text',
+        name: 'name',
+        label: 'Your Name',
+        autocomplete: 'name',
+        placeholder: 'John Smith',
+      },
+      {
+        type: 'email',
+        name: 'email',
+        label: 'Email Address',
+        autocomplete: 'email',
+        placeholder: 'john@example.com',
+      },
+      {
+        type: 'tel',
+        name: 'phone',
+        label: 'Phone Number',
+        autocomplete: 'tel',
+        placeholder: '(779) 702-9004',
+      },
+      {
+        type: 'number',
+        name: 'guest_count',
+        label: 'Expected Number of Guests',
+        placeholder: '50',
+      },
+      {
+        type: 'date',
+        name: 'event_date',
+        label: 'Event Date',
+      },
+      {
+        type: 'text',
+        name: 'event_type',
+        label: 'Event Type/Occasion',
+        placeholder: 'Wedding, Corporate Event, Birthday Party, etc.',
+      },
+      {
+        type: 'text',
+        name: 'event_location',
+        label: 'Event Location/Address',
+        placeholder: 'City, State or Full Address',
+      },
+      {
+        type: 'text',
+        name: 'service_type',
+        label: 'Preferred Service Type',
+        placeholder: 'Full-Service, Drop-Off, or Pick-Up',
+      },
+    ]}
+    textarea={{
+      label: 'Menu Preferences & Special Requests',
+      name: 'message',
+      placeholder: 'Tell us about your menu preferences, dietary restrictions, or any special requests for your event...',
+      rows: 6,
+    }}
+    disclaimer={{
+      label: 'By submitting this catering request, you acknowledge that West 52 BBQ will contact you to discuss your event details and provide a custom quote. Your information will not be shared with third parties.',
+    }}
+    button="Request Quote"
+    description="We typically respond to catering requests within 24 hours. For urgent requests or events within 2 weeks, please call us directly at (779) 702-9004."
+  />
+
+  <!-- Why Choose Us for Catering ************ -->
+  <Features
+    id="why-choose-catering"
+    title="Why Choose West 52 BBQ for Your Event"
+    subtitle="50+ years of catering experience. USMC veteran owned. Serving Will County with pride."
+    items={[
+      {
+        title: '50+ Years Experience',
+        description: 'Troy has been catering events for over 5 decades. From small family gatherings to 500-person weddings, we\'ve done it all.',
+        icon: 'tabler:award',
+      },
+      {
+        title: 'Authentic BBQ Methods',
+        description: 'We never cut corners. Every pound of meat is smoked low and slow using traditional methods. Real BBQ takes time.',
+        icon: 'tabler:grill',
+      },
+      {
+        title: 'Professional Service',
+        description: 'Military-trained precision and attention to detail. We show up on time, set up efficiently, and handle everything professionally.',
+        icon: 'tabler:shield-check',
+      },
+      {
+        title: 'Flexible Options',
+        description: 'Full-service, drop-off, or pick-up. Custom menus, dietary accommodations, and special requests welcome.',
+        icon: 'tabler:adjustments',
+      },
+      {
+        title: 'Quality Ingredients',
+        description: 'We source quality meats and make everything from scratch. No shortcuts, no compromises on quality.',
+        icon: 'tabler:meat',
+      },
+      {
+        title: 'Local & Veteran-Owned',
+        description: 'Supporting West 52 BBQ means supporting a local, veteran-owned business that treats every customer like family.',
+        icon: 'tabler:home-heart',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-off-white dark:bg-slate-800"></div>
+    </Fragment>
+  </Features>
+
+  <!-- Testimonials Section -->
+  <div class="bg-white dark:bg-slate-900 py-12 md:py-16">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-heading font-bold text-center mb-12">What Our Catering Clients Say</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div class="bg-off-white dark:bg-slate-800 rounded-lg p-6 shadow-md">
+          <div class="flex mb-2">
+            <span class="text-primary text-xl">★★★★★</span>
+          </div>
+          <p class="text-muted mb-4 italic">
+            "Troy catered our company picnic for 150 people. The brisket was incredible and everyone raved about the sides. Professional setup and service. Highly recommend!"
+          </p>
+          <p class="font-semibold">- Sarah M., Joliet</p>
+          <p class="text-sm text-muted">Corporate Event</p>
+        </div>
+
+        <div class="bg-off-white dark:bg-slate-800 rounded-lg p-6 shadow-md">
+          <div class="flex mb-2">
+            <span class="text-primary text-xl">★★★★★</span>
+          </div>
+          <p class="text-muted mb-4 italic">
+            "West 52 BBQ made our wedding reception unforgettable. The food was amazing and Troy was so easy to work with. Our guests still talk about how good it was!"
+          </p>
+          <p class="font-semibold">- Mike & Jennifer, Plainfield</p>
+          <p class="text-sm text-muted">Wedding Reception</p>
+        </div>
+
+        <div class="bg-off-white dark:bg-slate-800 rounded-lg p-6 shadow-md">
+          <div class="flex mb-2">
+            <span class="text-primary text-xl">★★★★★</span>
+          </div>
+          <p class="text-muted mb-4 italic">
+            "Ordered catering for my dad's 70th birthday party. The pulled pork and ribs were fall-off-the-bone tender. You really don't have to fight it to bite it!"
+          </p>
+          <p class="font-semibold">- Robert T., Shorewood</p>
+          <p class="text-sm text-muted">Birthday Party</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Call To Action *********** -->
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Call for Quote',
+        href: 'tel:7797029004',
+        icon: 'tabler:phone',
+      },
+      {
+        variant: 'secondary',
+        text: 'View Menu',
+        href: '/menu',
+        icon: 'tabler:meat',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      Ready to Make Your Event Unforgettable?
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Call <a href="tel:7797029004" class="text-primary hover:underline font-bold">(779) 702-9004</a> to discuss your catering needs.
+      <br class="hidden md:inline" />
+      <span class="font-semibold">Serving Will County & Surrounding Areas</span>
+    </Fragment>
+  </CallToAction>
+</Layout>
