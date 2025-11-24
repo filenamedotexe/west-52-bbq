@@ -1,0 +1,14 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg-brisket-sandwich" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B4513;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#654321;stop-opacity:0.5" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg-brisket-sandwich)"/>
+  <rect x="50" y="50" width="700" height="500" fill="none" stroke="#D2691E" stroke-width="3" stroke-dasharray="10,5"/>
+  <text x="400" y="280" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#8B4513" text-anchor="middle">🥪</text>
+  <text x="400" y="340" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#654321" text-anchor="middle">Brisket Sandwich</text>
+  <text x="400" y="380" font-family="Arial, sans-serif" font-size="18" fill="#8B4513" text-anchor="middle">On Toasted Brioche Bun</text>
+  <text x="400" y="520" font-family="Arial, sans-serif" font-size="14" fill="#999" text-anchor="middle">Replace with actual photo</text>
+</svg>

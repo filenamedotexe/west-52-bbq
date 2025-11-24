@@ -3,7 +3,7 @@ name: "The Marine Platter"
 description: "Troy's signature combo: Brisket, ribs, and pulled pork with three sides and cornbread. A feast worthy of a USMC veteran!"
 price: 32.99
 category: "combo-platters"
-image: "/images/menu/marine-platter.jpg"
+image: "/images/menu/marine-platter.svg"
 dietaryTags: ["gluten-free"]
 spicyLevel: 0
 calories: 1850

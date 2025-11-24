@@ -6,10 +6,13 @@ import ContactUs from '~/components/widgets/Contact.astro';
 import Content from '~/components/widgets/Content.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import troyImage from '~/assets/images/Photo Of Troy.jpg';
+import { getBusinessInfo } from '~/utils/business';
+
+const business = getBusinessInfo();
 
 const metadata = {
-  title: 'BBQ Catering Services | West 52 BBQ | Shorewood, IL | Events & Parties',
-  description: 'Professional BBQ catering in Shorewood, IL and Will County. Perfect for weddings, corporate events, family gatherings. 50+ years experience. Call (779) 702-9004 for quote.',
+  title: `BBQ Catering Services | West 52 BBQ | ${business.address.city}, ${business.address.state} | Events & Parties`,
+  description: `Professional BBQ catering in ${business.address.city}, ${business.address.state} and Will County. Perfect for weddings, corporate events, family gatherings. 50+ years experience. Call ${business.phone} for quote.`,
 };
 ---
 
@@ -41,7 +44,7 @@ const metadata = {
   <div class="bg-burnt-orange text-white py-4">
     <div class="container mx-auto px-4 text-center">
       <p class="text-base md:text-lg">
-        <strong>Book Your Event Today:</strong> Call <a href="tel:7797029004" class="font-bold hover:underline">(779) 702-9004</a>
+        <strong>Book Your Event Today:</strong> Call <a href={`tel:${business.phoneRaw}`} class="font-bold hover:underline">{business.phone}</a>
         <span class="mx-2">•</span>
         Serving Will County & Surrounding Areas
       </p>
@@ -222,7 +225,7 @@ const metadata = {
 
       <p class="text-center text-muted mt-8 text-sm">
         *Pricing varies based on final headcount, menu selections, service type, and event location.
-        Call <a href="tel:7797029004" class="text-primary hover:underline font-semibold">(779) 702-9004</a> for accurate quote.
+        Call <a href={`tel:${business.phoneRaw}`} class="text-primary hover:underline font-semibold">{business.phone}</a> for accurate quote.
       </p>
     </div>
   </div>
@@ -250,7 +253,7 @@ const metadata = {
     ]}
   >
     <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
+      <h3 class="text-2xl font-bold tracking-normal dark:text-white sm:text-3xl mb-2">
         Every Menu Is Customizable
       </h3>
       <p class="text-muted">
@@ -268,7 +271,7 @@ const metadata = {
   <ContactUs
     id="catering-form"
     title="Request Your Catering Quote"
-    subtitle="Fill out the form below and we'll get back to you within 24 hours with a custom quote for your event. For immediate assistance, call (779) 702-9004."
+    subtitle={`Fill out the form below and we'll get back to you within 24 hours with a custom quote for your event. For immediate assistance, call ${business.phone}.`}
     inputs={[
       {
         type: 'text',
@@ -331,7 +334,7 @@ const metadata = {
       label: 'By submitting this catering request, you acknowledge that West 52 BBQ will contact you to discuss your event details and provide a custom quote. Your information will not be shared with third parties.',
     }}
     button="Request Quote"
-    description="We typically respond to catering requests within 24 hours. For urgent requests or events within 2 weeks, please call us directly at (779) 702-9004."
+    description={`We typically respond to catering requests within 24 hours. For urgent requests or events within 2 weeks, please call us directly at ${business.phone}.`}
   />
 
   <!-- Why Choose Us for Catering ************ -->
@@ -425,7 +428,7 @@ const metadata = {
       {
         variant: 'primary',
         text: 'Call for Quote',
-        href: 'tel:7797029004',
+        href: `tel:${business.phoneRaw}`,
         icon: 'tabler:phone',
       },
       {
@@ -441,7 +444,7 @@ const metadata = {
     </Fragment>
 
     <Fragment slot="subtitle">
-      Call <a href="tel:7797029004" class="text-primary hover:underline font-bold">(779) 702-9004</a> to discuss your catering needs.
+      Call <a href={`tel:${business.phoneRaw}`} class="text-primary hover:underline font-bold">{business.phone}</a> to discuss your catering needs.
       <br class="hidden md:inline" />
       <span class="font-semibold">Serving Will County & Surrounding Areas</span>
     </Fragment>

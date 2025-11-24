@@ -3,7 +3,7 @@ name: "Creamy Mac and Cheese"
 description: "House-made mac and cheese with a blend of sharp cheddar, smoked gouda, and a crispy breadcrumb topping."
 price: 4.99
 category: "sides"
-image: "/images/menu/mac-cheese.jpg"
+image: "/images/menu/mac-cheese.svg"
 dietaryTags: ["vegetarian"]
 spicyLevel: 0
 calories: 380

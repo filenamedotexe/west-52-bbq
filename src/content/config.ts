@@ -72,6 +72,7 @@ const menuCollection = defineCollection({
     price: z.number().positive(),
     category: z.enum(['smoked-meats', 'sandwiches', 'sides', 'desserts', 'beverages', 'combo-platters']),
     image: z.string(),
+    active: z.boolean().default(true),
     dietaryTags: z.array(z.enum([
       'gluten-free',
       'dairy-free',

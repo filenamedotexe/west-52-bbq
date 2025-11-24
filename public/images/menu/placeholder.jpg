@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600">
+<rect fill="#e5e7eb" width="800" height="600"/>
+<text fill="#9ca3af" font-family="Arial" font-size="32" font-weight="bold" x="400" y="280" text-anchor="middle">No Image</text>
+<text fill="#9ca3af" font-family="Arial" font-size="18" x="400" y="320" text-anchor="middle">Upload a photo in menu manager</text>
+</svg>

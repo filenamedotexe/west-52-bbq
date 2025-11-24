@@ -3,14 +3,20 @@ import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import { getCollection } from 'astro:content';
+import { getBusinessInfo } from '~/utils/business';
+
+const business = getBusinessInfo();
 
 const metadata = {
   title: 'Menu | West 52 BBQ | Slow-Smoked Brisket, Ribs, Pulled Pork',
   description: 'View our full BBQ menu. Slow-smoked brisket, baby back ribs, pulled pork, and house-made sides. Gluten-free options available. Serving Shorewood, IL.',
 };
 
-// Get all menu items and sort by category
-const allMenuItems = await getCollection('menu');
+// Get all menu items, filter to active only, and sort by category
+const allMenuItems = (await getCollection('menu')).filter(item => {
+  // Show item if active is true, or if active field doesn't exist (backwards compatibility)
+  return item.data.active !== false;
+});
 
 // Group menu items by category
 const menuByCategory = allMenuItems.reduce((acc, item) => {
@@ -65,7 +71,7 @@ function getDietaryTagBadge(tag: string) {
       <span class="text-lg">
         Every dish is smoked using traditional methods perfected over 50 years.
         <span class="font-semibold">Call ahead for faster service:</span>
-        <a href="tel:7797029004" class="text-primary hover:underline">(779) 702-9004</a>
+        <a href={`tel:${business.phoneRaw}`} class="text-primary hover:underline">{business.phone}</a>
       </span>
     </Fragment>
   </Hero>
@@ -74,9 +80,9 @@ function getDietaryTagBadge(tag: string) {
   <div class="bg-burnt-orange text-white py-3">
     <div class="container mx-auto px-4 text-center">
       <p class="text-sm md:text-base">
-        <strong>Hours:</strong> Wed-Sat 11AM-8PM | Sun 12PM-5PM | Closed Mon-Tue
+        <strong>Hours:</strong> {business.hours.wednesday} (Wed-Sat) | {business.hours.sunday} (Sun) | {business.hours.monday} (Mon-Tue)
         <span class="mx-2">•</span>
-        <strong>Call Ahead:</strong> (779) 702-9004
+        <strong>Call Ahead:</strong> {business.phone}
       </p>
     </div>
   </div>
@@ -95,19 +101,32 @@ function getDietaryTagBadge(tag: string) {
 
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {items.map((item) => (
-              <div class="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
-                <div class="flex justify-between items-start mb-3">
-                  <h3 class="text-xl md:text-2xl font-heading font-bold text-charcoal dark:text-white">
-                    {item.data.name}
-                  </h3>
-                  <span class="text-2xl font-bold text-primary ml-4 flex-shrink-0">
-                    ${item.data.price.toFixed(2)}
-                  </span>
-                </div>
+              <div class="bg-white dark:bg-slate-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                <div class="flex flex-col md:flex-row">
+                  {/* Image */}
+                  <div class="md:w-48 w-full h-48 md:h-auto bg-gray-200 flex-shrink-0">
+                    <img
+                      src={item.data.image || '/images/menu/placeholder.svg'}
+                      alt={item.data.name}
+                      class="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
 
-                <p class="text-muted mb-3">
-                  {item.data.description}
-                </p>
+                  {/* Content */}
+                  <div class="flex-1 p-6">
+                    <div class="flex justify-between items-start mb-3">
+                      <h3 class="text-xl md:text-2xl font-heading font-bold text-charcoal dark:text-white">
+                        {item.data.name}
+                      </h3>
+                      <span class="text-2xl font-bold text-primary ml-4 flex-shrink-0">
+                        ${item.data.price.toFixed(2)}
+                      </span>
+                    </div>
+
+                    <p class="text-muted mb-3">
+                      {item.data.description}
+                    </p>
 
                 {/* Dietary Tags */}
                 {item.data.dietaryTags && item.data.dietaryTags.length > 0 && (
@@ -147,12 +166,14 @@ function getDietaryTagBadge(tag: string) {
                   )}
                 </div>
 
-                {/* Availability Notice */}
-                {item.data.availability && item.data.availability !== 'always' && (
-                  <div class="mt-3 text-sm text-orange-600 dark:text-orange-400">
-                    <strong>Available:</strong> {item.data.availability.replace('-', ' ')}
+                    {/* Availability Notice */}
+                    {item.data.availability && item.data.availability !== 'always' && (
+                      <div class="mt-3 text-sm text-orange-600 dark:text-orange-400">
+                        <strong>Available:</strong> {item.data.availability.replace('-', ' ')}
+                      </div>
+                    )}
                   </div>
-                )}
+                </div>
               </div>
             ))}
           </div>
@@ -184,7 +205,7 @@ function getDietaryTagBadge(tag: string) {
         </div>
       </div>
       <p class="text-center text-muted mt-6 text-sm">
-        All smoked meats are gluten-free. If you have dietary restrictions or allergies, please call us at (779) 702-9004.
+        All smoked meats are gluten-free. If you have dietary restrictions or allergies, please call us at {business.phone}.
       </p>
     </div>
   </div>
@@ -195,7 +216,7 @@ function getDietaryTagBadge(tag: string) {
       {
         variant: 'primary',
         text: 'Call to Order',
-        href: 'tel:7797029004',
+        href: `tel:${business.phoneRaw}`,
         icon: 'tabler:phone',
       },
       {
@@ -211,7 +232,7 @@ function getDietaryTagBadge(tag: string) {
     </Fragment>
 
     <Fragment slot="subtitle">
-      Call ahead for faster service: (779) 702-9004
+      Call ahead for faster service: {business.phone}
       <br class="hidden md:inline" />
       <span class="font-semibold">You Don't Have To Fight It To Bite It!</span>
     </Fragment>

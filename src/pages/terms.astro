@@ -1,0 +1,241 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import { getBusinessInfo } from '~/utils/business';
+
+const business = getBusinessInfo();
+
+const metadata = {
+  title: 'Terms & Conditions | West 52 BBQ',
+  description: 'Terms and Conditions for West 52 BBQ services including dine-in, takeout, and catering in Shorewood, IL.'
+};
+---
+
+<Layout metadata={metadata}>
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-normal mb-8">Terms & Conditions</h1>
+    <div class="prose prose-lg max-w-none dark:prose-invert dark:prose-headings:text-slate-300 prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-normal prose-headings:font-bold prose-a:text-blue-600 dark:prose-a:text-blue-400">
+    <p><em>Last updated</em>: November 20, 2025</p>
+
+    <h2>West 52 BBQ Terms & Conditions</h2>
+
+    <p>Welcome to West 52 BBQ. By using our services, including dine-in, takeout, catering, or interacting with our website, you agree to these Terms & Conditions. Please read them carefully.</p>
+
+    <h2>1. Definitions</h2>
+
+    <ul>
+      <li><strong>"West 52 BBQ," "we," "us," or "our"</strong> refers to West 52 BBQ, a veteran-owned BBQ restaurant located in {business.address.city}, {business.address.state} {business.address.zip}.</li>
+      <li><strong>"Customer," "you," or "your"</strong> refers to any individual or entity using our services.</li>
+      <li><strong>"Services"</strong> includes dine-in dining, takeout orders, catering services, and use of our website.</li>
+      <li><strong>"Catering Services"</strong> refers to food preparation and delivery services for events, parties, and gatherings.</li>
+    </ul>
+
+    <h2>2. General Services</h2>
+
+    <h3>2.1 Business Hours</h3>
+
+    <p>Our regular business hours are:</p>
+    <ul>
+      <li><strong>Wednesday - Saturday</strong>: {business.hours.wednesday}</li>
+      <li><strong>Sunday</strong>: {business.hours.sunday}</li>
+      <li><strong>Monday - Tuesday</strong>: {business.hours.monday}</li>
+    </ul>
+
+    <p>Hours may vary during holidays. We reserve the right to modify our hours with reasonable notice.</p>
+
+    <h3>2.2 Dine-In and Takeout</h3>
+
+    <ul>
+      <li><strong>Availability</strong>: All menu items are subject to availability. We operate on a "first come, first served" basis.</li>
+      <li><strong>Call-Ahead Orders</strong>: We strongly recommend calling ahead at <strong>{business.phone}</strong> to ensure your order is ready upon arrival.</li>
+      <li><strong>Product Quality</strong>: We smoke our meats fresh daily using traditional methods. If we run out of an item, it may not be available until the next business day.</li>
+    </ul>
+
+    <h2>3. Catering Services</h2>
+
+    <h3>3.1 Booking and Reservations</h3>
+
+    <ul>
+      <li><strong>Advance Notice</strong>: Catering orders require <strong>at least 7 days advance notice</strong>. For events with 50+ guests, we recommend <strong>14+ days notice</strong>.</li>
+      <li><strong>Quote Requests</strong>: All catering quotes are estimates and subject to change based on final headcount, menu selections, and service requirements.</li>
+      <li><strong>Confirmation</strong>: Catering orders must be confirmed in writing (email or signed contract) and require a deposit.</li>
+    </ul>
+
+    <h3>3.2 Deposits and Payment</h3>
+
+    <ul>
+      <li><strong>Deposit</strong>: A <strong>50% non-refundable deposit</strong> is required at the time of booking to secure your catering date.</li>
+      <li><strong>Final Payment</strong>: The remaining balance is due <strong>72 hours before the event date</strong>.</li>
+      <li><strong>Payment Methods</strong>: We accept cash, credit cards, and debit cards. Checks must be cleared <strong>5 business days before the event</strong>.</li>
+      <li><strong>Additional Charges</strong>: Last-minute changes to guest count or menu may incur additional fees.</li>
+    </ul>
+
+    <h3>3.3 Cancellation and Refund Policy</h3>
+
+    <ul>
+      <li><strong>Catering Cancellations</strong>:
+        <ul>
+          <li>Cancellations made <strong>14+ days before the event</strong> will receive a full refund minus the deposit.</li>
+          <li>Cancellations made <strong>7-13 days before</strong> will receive a 50% refund minus the deposit.</li>
+          <li>Cancellations made <strong>less than 7 days before</strong> are non-refundable.</li>
+        </ul>
+      </li>
+      <li><strong>Takeout/Dine-In</strong>: All sales are final once food is prepared. We do not offer refunds for dine-in or takeout orders unless there is a quality issue.</li>
+      <li><strong>Quality Issues</strong>: If you experience a quality issue, please contact us immediately at {business.phone}. We will work to resolve the issue promptly.</li>
+    </ul>
+
+    <h3>3.4 Guest Count Changes</h3>
+
+    <ul>
+      <li><strong>Final Headcount</strong>: Must be provided <strong>72 hours before the event</strong>. You will be charged for this confirmed number.</li>
+      <li><strong>Increases</strong>: Guest count increases of more than 10% may not be accommodated depending on our capacity.</li>
+      <li><strong>Decreases</strong>: Reductions in guest count <strong>less than 72 hours before the event</strong> will still be charged at the confirmed amount.</li>
+    </ul>
+
+    <h2>4. Food Safety and Allergies</h2>
+
+    <h3>4.1 Food Allergies and Dietary Restrictions</h3>
+
+    <ul>
+      <li>We make reasonable efforts to accommodate dietary restrictions and allergies when notified in advance.</li>
+      <li><strong>Cross-Contamination</strong>: Our kitchen handles common allergens including wheat, dairy, nuts, soy, and others. We cannot guarantee complete allergen-free preparation.</li>
+      <li><strong>Gluten-Free</strong>: Our smoked meats are naturally gluten-free. However, cross-contamination may occur in our kitchen.</li>
+      <li><strong>Customer Responsibility</strong>: Customers with severe allergies should inform us before ordering and understand the risk of cross-contamination.</li>
+    </ul>
+
+    <h3>4.2 Food Handling</h3>
+
+    <ul>
+      <li>All food is prepared using proper food safety standards and complies with Illinois Department of Public Health regulations.</li>
+      <li><strong>Temperature Requirements</strong>: Catered food must be consumed within <strong>2 hours</strong> of delivery to ensure food safety, or kept at proper temperatures (hot foods above 140°F, cold foods below 40°F).</li>
+      <li><strong>Leftover Policy</strong>: We are not responsible for food safety once it has been delivered or picked up.</li>
+    </ul>
+
+    <h2>5. Pricing and Menu Changes</h2>
+
+    <ul>
+      <li><strong>Menu Prices</strong>: All prices are subject to change without notice. Prices will be confirmed at the time of order.</li>
+      <li><strong>Menu Availability</strong>: Menu items may change seasonally or based on availability of ingredients.</li>
+      <li><strong>Sales Tax</strong>: Illinois sales tax will be added to all orders unless exempt.</li>
+      <li><strong>Gratuity</strong>: Gratuity is not included in catering quotes unless specified. Tips are appreciated but not required.</li>
+    </ul>
+
+    <h2>6. Liability and Limitations</h2>
+
+    <h3>6.1 Service Limitations</h3>
+
+    <p>West 52 BBQ is not liable for:</p>
+    <ul>
+      <li>Delays caused by weather, traffic, or circumstances beyond our control.</li>
+      <li>Venue restrictions or limitations that prevent proper food service.</li>
+      <li>Equipment failure at the event location (power outages, lack of tables, etc.).</li>
+      <li>Damage to property caused by third parties at catered events.</li>
+    </ul>
+
+    <h3>6.2 Maximum Liability</h3>
+
+    <p>Our total liability for any claim related to our services is limited to the amount paid for that specific order or service.</p>
+
+    <h3>6.3 Assumption of Risk</h3>
+
+    <p>By consuming our food products, you acknowledge:</p>
+    <ul>
+      <li>BBQ involves smoking and cooking techniques that may present food safety risks if not handled properly.</li>
+      <li>Consumption of undercooked meats or improper food storage may cause illness.</li>
+      <li>You assume all risks associated with food allergies and dietary restrictions.</li>
+    </ul>
+
+    <h2>7. Intellectual Property</h2>
+
+    <ul>
+      <li><strong>Website Content</strong>: All content on our website, including text, images, logos, and recipes, is owned by West 52 BBQ and protected by copyright.</li>
+      <li><strong>Trademark</strong>: "West 52 BBQ" and our logo are trademarks of West 52 BBQ.</li>
+      <li><strong>Use Restrictions</strong>: You may not copy, reproduce, or use our content without written permission.</li>
+    </ul>
+
+    <h2>8. Customer Conduct</h2>
+
+    <p>We reserve the right to refuse service to anyone who:</p>
+    <ul>
+      <li>Is abusive, threatening, or disrespectful to our staff or other customers.</li>
+      <li>Violates these Terms & Conditions.</li>
+      <li>Engages in illegal activity on our premises or during catered events.</li>
+    </ul>
+
+    <h2>9. Contact Forms and Communications</h2>
+
+    <ul>
+      <li><strong>Opt-In</strong>: By submitting a contact form or catering request, you consent to receive communications from West 52 BBQ regarding your inquiry.</li>
+      <li><strong>Unsubscribe</strong>: You may opt out of marketing communications at any time by contacting us.</li>
+      <li><strong>Privacy</strong>: We do not sell or share your personal information with third parties. See our Privacy Policy for more details.</li>
+    </ul>
+
+    <h2>10. Catering Service Areas</h2>
+
+    <ul>
+      <li><strong>Primary Service Area</strong>: We primarily serve Will County, Illinois, including Shorewood, Joliet, Plainfield, Romeoville, Lockport, Channahon, and surrounding areas.</li>
+      <li><strong>Extended Areas</strong>: Service outside Will County may be available for large events and may incur additional travel fees.</li>
+      <li><strong>Delivery</strong>: Catering delivery is available depending on location and order size. Fees apply.</li>
+    </ul>
+
+    <h2>11. Force Majeure</h2>
+
+    <p>We are not liable for failure to perform services due to circumstances beyond our control, including but not limited to:</p>
+    <ul>
+      <li>Natural disasters (fire, flood, storm)</li>
+      <li>Pandemic or public health emergency</li>
+      <li>Government restrictions or regulations</li>
+      <li>Equipment failure or supplier issues</li>
+    </ul>
+
+    <p>In such cases, we will work with you to reschedule or provide a refund as appropriate.</p>
+
+    <h2>12. Dispute Resolution</h2>
+
+    <h3>12.1 Informal Resolution</h3>
+
+    <p>If you have any issues with our services, please contact us first at <strong>{business.phone}</strong> or via our contact form. We are committed to resolving disputes informally and in good faith.</p>
+
+    <h3>12.2 Governing Law</h3>
+
+    <p>These Terms & Conditions are governed by the laws of the State of Illinois and the United States, without regard to conflict of law provisions.</p>
+
+    <h3>12.3 Venue</h3>
+
+    <p>Any legal action or proceeding related to these Terms shall be brought exclusively in the courts located in Will County, Illinois.</p>
+
+    <h2>13. Severability</h2>
+
+    <p>If any provision of these Terms is found to be invalid or unenforceable, the remaining provisions will continue in full force and effect.</p>
+
+    <h2>14. Modifications</h2>
+
+    <p>We reserve the right to modify these Terms & Conditions at any time. Changes will be effective immediately upon posting to our website. Continued use of our services constitutes acceptance of modified Terms.</p>
+
+    <p>For catering contracts already signed, the Terms in effect at the time of booking will apply.</p>
+
+    <h2>15. Entire Agreement</h2>
+
+    <p>These Terms & Conditions, along with any signed catering contract, constitute the entire agreement between you and West 52 BBQ regarding our services.</p>
+
+    <h2>16. Contact Information</h2>
+
+    <p>If you have questions about these Terms & Conditions, please contact us:</p>
+
+    <p>
+      <strong>West 52 BBQ</strong><br />
+      {business.address.city}, {business.address.state} {business.address.zip}<br />
+      <strong>Phone</strong>: {business.phone}<br />
+      <strong>Hours</strong>: Wed-Sat {business.hours.wednesday} | Sun {business.hours.sunday}
+    </p>
+
+    <hr />
+
+    <p><strong>Thank you for choosing West 52 BBQ!</strong></p>
+
+    <p><em>"You Don't Have To Fight It To Bite It!"</em></p>
+
+    <p>Troy Johnson - Owner & Pit Master<br />
+    USMC Veteran | 50+ Years BBQ Experience</p>
+    </div>
+  </section>
+</Layout>

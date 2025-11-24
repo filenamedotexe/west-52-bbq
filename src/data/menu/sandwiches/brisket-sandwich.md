@@ -3,7 +3,7 @@ name: "Smoked Brisket Sandwich"
 description: "Thick-cut smoked brisket piled high on a toasted brioche bun with crispy coleslaw and house BBQ sauce."
 price: 13.99
 category: "sandwiches"
-image: "/images/menu/brisket-sandwich.jpg"
+image: "/images/menu/brisket-sandwich.svg"
 dietaryTags: []
 spicyLevel: 0
 calories: 720

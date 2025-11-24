@@ -3,7 +3,7 @@ name: "Baby Back Ribs"
 description: "Fall-off-the-bone tender ribs smoked for 6 hours with our signature dry rub. Half or full rack available."
 price: 24.99
 category: "smoked-meats"
-image: "/images/menu/ribs.jpg"
+image: "/images/menu/ribs.svg"
 dietaryTags: ["gluten-free", "dairy-free"]
 spicyLevel: 1
 calories: 920

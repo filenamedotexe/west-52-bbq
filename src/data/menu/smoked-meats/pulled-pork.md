@@ -3,7 +3,7 @@ name: "Pulled Pork"
 description: "Pork shoulder smoked for 10 hours until it shreds at the touch of a fork. Carolina-style with vinegar sauce or Kansas City-style with thick & smoky."
 price: 14.99
 category: "smoked-meats"
-image: "/images/menu/pulled-pork.jpg"
+image: "/images/menu/pulled-pork.svg"
 dietaryTags: ["gluten-free", "dairy-free"]
 spicyLevel: 2
 calories: 680

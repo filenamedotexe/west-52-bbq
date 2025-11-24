@@ -3,10 +3,13 @@ import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import { getBusinessInfo } from '~/utils/business';
+
+const business = getBusinessInfo();
 
 const metadata = {
-  title: 'Customer Reviews | West 52 BBQ | Shorewood, IL | BBQ Testimonials',
-  description: 'Read what customers say about West 52 BBQ in Shorewood, IL. Real reviews from satisfied BBQ lovers. 50+ years of excellence. Call (779) 702-9004.',
+  title: `Customer Reviews | ${business.name} | ${business.address.city}, ${business.address.state} | BBQ Testimonials`,
+  description: `Read what customers say about ${business.name} in ${business.address.city}, ${business.address.state}. Real reviews from satisfied BBQ lovers. 50+ years of excellence. Call ${business.phone}.`,
 };
 
 // Customer reviews data
@@ -371,7 +374,7 @@ const reviews = [
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <a
-          href="tel:7797029004"
+          href={`tel:${business.phoneRaw}`}
           class="inline-flex items-center justify-center gap-2 bg-white text-burnt-orange px-8 py-4 rounded-lg font-bold text-lg hover:bg-off-white transition-colors"
         >
           <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">

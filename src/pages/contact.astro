@@ -4,10 +4,14 @@ import Hero from '~/components/widgets/Hero.astro';
 import ContactUs from '~/components/widgets/Contact.astro';
 import Features2 from '~/components/widgets/Features2.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import { getBusinessInfo, getGoogleMapsDirectionsUrl } from '~/utils/business';
+
+const business = getBusinessInfo();
+const directionsUrl = getGoogleMapsDirectionsUrl();
 
 const metadata = {
-  title: 'Contact West 52 BBQ | Shorewood, IL | (779) 702-9004 | BBQ Restaurant',
-  description: 'Contact West 52 BBQ in Shorewood, IL. Call (779) 702-9004 for orders, catering quotes, or questions. Open Wed-Sat 11AM-8PM, Sun 12PM-5PM. Serving Will County.',
+  title: `Contact ${business.name} | ${business.address.city}, ${business.address.state} | ${business.phone} | BBQ Restaurant`,
+  description: `Contact ${business.name} in ${business.address.city}, ${business.address.state}. Call ${business.phone} for orders, catering quotes, or questions. Open Wed-Sat ${business.hours.wednesday}, Sun ${business.hours.sunday}. Serving Will County.`,
 };
 ---
 
@@ -25,7 +29,7 @@ const metadata = {
     <Fragment slot="subtitle">
       <span class="text-lg">
         Questions about our menu? Need a catering quote? Want to place an order?
-        <span class="block mt-2 font-semibold">Call us at <a href="tel:7797029004" class="text-primary hover:underline">(779) 702-9004</a></span>
+        <span class="block mt-2 font-semibold">Call us at <a href={`tel:${business.phoneRaw}`} class="text-primary hover:underline">{business.phone}</a></span>
       </span>
     </Fragment>
   </Hero>
@@ -36,19 +40,19 @@ const metadata = {
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
         <div>
           <p class="font-heading text-xl mb-1">Call Us</p>
-          <a href="tel:7797029004" class="text-lg font-bold hover:text-off-white transition">
-            (779) 702-9004
+          <a href={`tel:${business.phoneRaw}`} class="text-lg font-bold hover:text-off-white transition">
+            {business.phone}
           </a>
         </div>
         <div>
           <p class="font-heading text-xl mb-1">Visit Us</p>
-          <p class="text-sm">Shorewood, IL 60404</p>
-          <p class="text-xs opacity-90">Serving Will County</p>
+          <p class="text-sm">{business.address.street}</p>
+          <p class="text-xs opacity-90">{business.address.city}, {business.address.state} {business.address.zip}</p>
         </div>
         <div>
           <p class="font-heading text-xl mb-1">Hours</p>
-          <p class="text-sm">Wed-Sat: 11AM-8PM</p>
-          <p class="text-xs opacity-90">Sun: 12PM-5PM | Closed Mon-Tue</p>
+          <p class="text-sm">Wed-Sat: {business.hours.wednesday}</p>
+          <p class="text-xs opacity-90">Sun: {business.hours.sunday} | Closed Mon-Tue</p>
         </div>
       </div>
     </div>
@@ -58,7 +62,7 @@ const metadata = {
   <ContactUs
     id="contact-form"
     title="Send Us a Message"
-    subtitle="Have a question? Fill out the form below and we'll get back to you as soon as possible. For immediate assistance, please call us at (779) 702-9004."
+    subtitle={`Have a question? Fill out the form below and we'll get back to you as soon as possible. For immediate assistance, please call us at ${business.phone}.`}
     inputs={[
       {
         type: 'text',
@@ -79,7 +83,7 @@ const metadata = {
         name: 'phone',
         label: 'Phone Number',
         autocomplete: 'tel',
-        placeholder: '(779) 702-9004',
+        placeholder: business.phone,
       },
       {
         type: 'text',
@@ -123,17 +127,17 @@ const metadata = {
       },
       {
         title: 'Business Hours',
-        description: 'Wed-Sat: 11:00 AM - 8:00 PM | Sun: 12:00 PM - 5:00 PM | Closed Monday & Tuesday',
+        description: `Wed-Sat: ${business.hours.wednesday} | Sun: ${business.hours.sunday} | Closed Monday & Tuesday`,
         icon: 'tabler:clock',
       },
       {
         title: 'Phone',
-        description: '(779) 702-9004',
+        description: business.phone,
         icon: 'tabler:headset',
       },
       {
         title: 'Location',
-        description: 'Shorewood, IL 60404 | Serving Will County & surrounding areas',
+        description: `${business.address.full} | Serving Will County & surrounding areas`,
         icon: 'tabler:map-2',
       },
     ]}
@@ -144,32 +148,31 @@ const metadata = {
     <div class="container mx-auto px-4">
       <div class="text-center mb-8">
         <h2 class="text-3xl md:text-4xl font-heading font-bold text-charcoal dark:text-white mb-4">
-          Find Us in Shorewood, IL
+          Find Us in {business.address.city}, {business.address.state}
         </h2>
         <p class="text-lg text-muted max-w-2xl mx-auto">
-          Located in Shorewood, IL, we proudly serve Will County including Joliet, Plainfield, Romeoville, Lockport, and Channahon.
+          Located at {business.address.full}, we proudly serve Will County including Joliet, Plainfield, Romeoville, Lockport, and Channahon.
         </p>
       </div>
 
-      <!-- Map Placeholder - Replace with actual Google Maps embed -->
+      <!-- Google Maps Embed -->
       <div class="max-w-4xl mx-auto">
         <div class="bg-white dark:bg-slate-900 rounded-lg shadow-lg overflow-hidden" style="height: 450px;">
-          <!-- Google Maps Embed - Update with actual address when available -->
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d95262.87424066938!2d-88.2615!3d41.5200!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e58d5e47b7b0b%3A0x4b7b7b7b7b7b7b7b!2sShorewood%2C%20IL%2060404!5e0!3m2!1sen!2sus!4v1234567890"
+            src={`https://www.google.com/maps/embed/v1/place?key=&q=${encodeURIComponent(business.address.full)}`}
             width="100%"
             height="450"
             style="border:0;"
             allowfullscreen=""
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
-            title="West 52 BBQ Location in Shorewood, IL"
+            title={`${business.name} Location - ${business.address.full}`}
           ></iframe>
         </div>
 
         <div class="mt-6 text-center">
           <a
-            href="https://www.google.com/maps/dir//Shorewood,+IL+60404"
+            href={directionsUrl}
             target="_blank"
             rel="noopener noreferrer"
             class="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-brick-red transition-colors"
@@ -244,7 +247,7 @@ const metadata = {
 
         <p class="text-center text-muted mt-8">
           Don't see your city listed? We likely serve your area! Call us at
-          <a href="tel:7797029004" class="text-primary hover:underline font-semibold">(779) 702-9004</a>
+          <a href={`tel:${business.phoneRaw}`} class="text-primary hover:underline font-semibold">{business.phone}</a>
           to confirm delivery or catering availability.
         </p>
       </div>
@@ -278,7 +281,7 @@ const metadata = {
             <span class="text-primary text-xl group-open:rotate-45 transition-transform">+</span>
           </summary>
           <p class="text-muted mt-4">
-            Absolutely! Call us at (779) 702-9004 to place your order ahead of time. We'll have it ready when you arrive.
+            Absolutely! Call us at {business.phone} to place your order ahead of time. We'll have it ready when you arrive.
             Calling ahead is highly recommended, especially during peak hours (lunch and dinner).
           </p>
         </details>
@@ -301,7 +304,7 @@ const metadata = {
           </summary>
           <p class="text-muted mt-4">
             Visit our <a href="/catering" class="text-primary hover:underline font-semibold">Catering page</a> to fill
-            out a detailed request form, or call us directly at (779) 702-9004 to discuss your event with Troy.
+            out a detailed request form, or call us directly at {business.phone} to discuss your event with Troy.
           </p>
         </details>
 
@@ -311,8 +314,7 @@ const metadata = {
             <span class="text-primary text-xl group-open:rotate-45 transition-transform">+</span>
           </summary>
           <p class="text-muted mt-4">
-            We're located in Shorewood, IL 60404. For the exact address and directions, please call us at (779) 702-9004
-            or use the map above to get directions.
+            We're located at {business.address.full}. Use the map above to get directions or call us at {business.phone} if you need assistance finding us.
           </p>
         </details>
       </div>
@@ -324,8 +326,8 @@ const metadata = {
     actions={[
       {
         variant: 'primary',
-        text: 'Call (779) 702-9004',
-        href: 'tel:7797029004',
+        text: `Call ${business.phone}`,
+        href: `tel:${business.phoneRaw}`,
         icon: 'tabler:phone',
       },
       {

@@ -11,6 +11,9 @@ import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import troyImage from '~/assets/images/Photo Of Troy.jpg';
 import buildingImage from '~/assets/images/West 52 BBQ Building Exterior.webp';
+import { getBusinessInfo } from '~/utils/business';
+
+const business = getBusinessInfo();
 
 // Fetch featured menu items from collection
 const allMenuItems = await getCollection('menu');
@@ -42,8 +45,8 @@ const menuFeaturesItems = [
 ];
 
 const metadata = {
-  title: 'West 52 BBQ | Authentic BBQ in Shorewood, IL | You Don\'t Have To Fight It To Bite It',
-  description: 'Authentic slow-smoked BBQ in Shorewood, IL. 50+ years experience. USMC veteran owned. Serving Will County with tender brisket, ribs, and pulled pork. Catering available.',
+  title: `West 52 BBQ | Authentic BBQ in ${business.address.city}, ${business.address.state} | You Don't Have To Fight It To Bite It`,
+  description: `Authentic slow-smoked BBQ in ${business.address.city}, ${business.address.state}. 50+ years experience. USMC veteran owned. Serving Will County with tender brisket, ribs, and pulled pork. Catering available.`,
   ignoreTitleTemplate: true,
 };
 ---
@@ -55,7 +58,7 @@ const metadata = {
     <div class="absolute inset-0">
       <Image
         src={buildingImage}
-        alt="West 52 BBQ Restaurant Exterior in Shorewood, IL"
+        alt={`West 52 BBQ Restaurant Exterior in ${business.address.city}, ${business.address.state}`}
         class="w-full h-full object-cover"
         loading="eager"
         widths={[400, 800, 1200, 1600]}
@@ -69,7 +72,7 @@ const metadata = {
     <div class="relative z-10 container mx-auto px-4 text-center">
       <!-- Tagline -->
       <p class="text-burnt-orange font-heading text-lg md:text-xl tracking-widest uppercase mb-4">
-        Shorewood, IL • Est. 50+ Years
+        {business.address.city}, {business.address.state} • Est. 50+ Years
       </p>
 
       <!-- Main Headline - Large & Bold -->
@@ -103,14 +106,14 @@ const metadata = {
           View Our Menu
         </a>
         <a
-          href="tel:7797029004"
+          href={`tel:${business.phoneRaw}`}
           class="group inline-flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white font-bold text-lg md:text-xl px-8 py-4 rounded-lg border-2 border-white/30 hover:border-white/50 transition-all duration-300"
         >
           <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
             <path d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2"></path>
           </svg>
-          (779) 702-9004
+          {business.phone}
         </a>
       </div>
 
@@ -130,16 +133,16 @@ const metadata = {
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
         <div>
           <p class="font-heading text-xl mb-1">Hours</p>
-          <p class="text-sm">Wed-Sat: 11AM-8PM | Sun: 12PM-5PM</p>
+          <p class="text-sm">Wed-Sat: {business.hours.wednesday} | Sun: {business.hours.sunday}</p>
           <p class="text-xs opacity-90">Closed Mon-Tue</p>
         </div>
         <div>
           <p class="font-heading text-xl mb-1">Call Ahead</p>
-          <a href="tel:7797029004" class="text-lg font-bold hover:text-off-white transition">(779) 702-9004</a>
+          <a href={`tel:${business.phoneRaw}`} class="text-lg font-bold hover:text-off-white transition">{business.phone}</a>
         </div>
         <div>
           <p class="font-heading text-xl mb-1">Location</p>
-          <p class="text-sm">Shorewood, IL 60404</p>
+          <p class="text-sm">{business.address.city}, {business.address.state} {business.address.zip}</p>
           <p class="text-xs opacity-90">Serving Will County</p>
         </div>
       </div>
@@ -182,7 +185,7 @@ const metadata = {
     }}
   >
     <Fragment slot="content">
-      <h3 class="text-2xl font-heading font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
+      <h3 class="text-2xl font-heading font-bold tracking-normal dark:text-white sm:text-3xl mb-2">
         USMC Veteran with 50+ Years Experience
       </h3>
       <p class="text-muted">
@@ -268,11 +271,11 @@ const metadata = {
     items={[
       {
         title: 'What are your hours?',
-        description: 'We\'re open Wednesday-Saturday from 11:00 AM to 8:00 PM, and Sunday from 12:00 PM to 5:00 PM. Closed Monday and Tuesday.',
+        description: `We're open Wednesday-Saturday from ${business.hours.wednesday}, and Sunday from ${business.hours.sunday}. Closed Monday and Tuesday.`,
       },
       {
         title: 'Do you offer catering?',
-        description: 'Yes! We cater events of all sizes—from family gatherings to corporate events and weddings. Call (779) 702-9004 for a custom quote.',
+        description: `Yes! We cater events of all sizes—from family gatherings to corporate events and weddings. Call ${business.phone} for a custom quote.`,
       },
       {
         title: 'Do you have gluten-free options?',
@@ -280,7 +283,7 @@ const metadata = {
       },
       {
         title: 'Can I call ahead for faster service?',
-        description: 'Absolutely! Call (779) 702-9004 to place your order ahead of time. We\'ll have it ready when you arrive.',
+        description: `Absolutely! Call ${business.phone} to place your order ahead of time. We'll have it ready when you arrive.`,
       },
       {
         title: 'What makes your BBQ different?',
@@ -292,7 +295,7 @@ const metadata = {
       },
       {
         title: 'What areas do you serve?',
-        description: 'We\'re located in Shorewood, IL and proudly serve all of Will County including Joliet, Plainfield, Romeoville, Lockport, and Channahon.',
+        description: `We're located in ${business.address.city}, ${business.address.state} and proudly serve all of Will County including Joliet, Plainfield, Romeoville, Lockport, and Channahon.`,
       },
       {
         title: 'What does "You Don\'t Have To Fight It To Bite It" mean?',
@@ -312,8 +315,8 @@ const metadata = {
       },
       {
         variant: 'secondary',
-        text: 'Call (779) 702-9004',
-        href: 'tel:7797029004',
+        text: `Call ${business.phone}`,
+        href: `tel:${business.phoneRaw}`,
         icon: 'tabler:phone',
       },
     ]}
@@ -323,7 +326,7 @@ const metadata = {
     </Fragment>
 
     <Fragment slot="subtitle">
-      Visit West 52 BBQ in Shorewood, IL or call ahead for faster service.
+      Visit West 52 BBQ in {business.address.city}, {business.address.state} or call ahead for faster service.
       <br class="hidden md:inline" />
       <span class="font-semibold">You Don't Have To Fight It To Bite It!</span>
     </Fragment>

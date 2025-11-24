@@ -3,7 +3,7 @@ name: "Slow-Smoked Beef Brisket"
 description: "Our signature brisket smoked for 14+ hours over hickory and oak. Tender, juicy, with a perfect smoke ring. You Don't Have To Fight It To Bite It!"
 price: 18.99
 category: "smoked-meats"
-image: "/images/menu/brisket.jpg"
+image: "/images/menu/brisket.svg"
 dietaryTags: ["gluten-free"]
 spicyLevel: 0
 calories: 850

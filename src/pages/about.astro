@@ -6,10 +6,13 @@ import Features from '~/components/widgets/Features.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import Layout from '~/layouts/PageLayout.astro';
 import troyImage from '~/assets/images/Photo Of Troy.jpg';
+import { getBusinessInfo } from '~/utils/business';
+
+const business = getBusinessInfo();
 
 const metadata = {
   title: 'About West 52 BBQ | Troy Johnson - USMC Veteran | 50+ Years BBQ Experience',
-  description: 'Meet Troy Johnson, USMC veteran with 50+ years of BBQ experience. Learn the story behind West 52 BBQ and our commitment to authentic slow-smoked barbecue in Shorewood, IL.',
+  description: `Meet Troy Johnson, USMC veteran with 50+ years of BBQ experience. Learn the story behind West 52 BBQ and our commitment to authentic slow-smoked barbecue in ${business.address.city}, ${business.address.state}.`,
 };
 ---
 
@@ -64,7 +67,7 @@ const metadata = {
     }}
   >
     <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-4">
+      <h3 class="text-2xl font-bold tracking-normal dark:text-white sm:text-3xl mb-4">
         From Marines to Meats
       </h3>
       <p class="text-muted mb-4">
@@ -161,7 +164,7 @@ const metadata = {
     ]}
   >
     <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
+      <h3 class="text-2xl font-bold tracking-normal dark:text-white sm:text-3xl mb-2">
         Built on Values That Matter
       </h3>
       <p>
@@ -199,8 +202,8 @@ const metadata = {
       },
       {
         variant: 'secondary',
-        text: 'Call (779) 702-9004',
-        href: 'tel:7797029004',
+        text: `Call ${business.phone}`,
+        href: `tel:${business.phoneRaw}`,
         icon: 'tabler:phone',
       },
     ]}
@@ -210,9 +213,9 @@ const metadata = {
     </Fragment>
 
     <Fragment slot="subtitle">
-      Visit West 52 BBQ in Shorewood, IL or call ahead for faster service.
+      Visit West 52 BBQ in {business.address.city}, {business.address.state} or call ahead for faster service.
       <br class="hidden md:inline" />
-      Open Wed-Sat 11AM-8PM, Sun 12PM-5PM
+      Open Wed-Sat {business.hours.wednesday}, Sun {business.hours.sunday}
     </Fragment>
   </CallToAction>
 </Layout>

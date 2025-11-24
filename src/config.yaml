@@ -6,6 +6,29 @@ site:
 
   googleSiteVerificationId: null
 
+# Business Information
+business:
+  name: West 52 BBQ
+  phone: '(779) 702-9004'
+  phoneRaw: '7797029004'
+  address:
+    street: 805 W Jefferson St
+    city: Shorewood
+    state: IL
+    zip: '60404'
+    full: '805 W Jefferson St, Shorewood, IL 60404'
+  coordinates:
+    lat: 41.5200
+    lng: -88.2615
+  hours:
+    sunday: '4:00 PM - 8:00 PM'
+    monday: 'Closed'
+    tuesday: 'Closed'
+    wednesday: '11:00 AM - 8:00 PM'
+    thursday: '11:00 AM - 8:00 PM'
+    friday: '11:00 AM - 8:00 PM'
+    saturday: '11:00 AM - 8:00 PM'
+
 # Default SEO metadata
 metadata:
   title:

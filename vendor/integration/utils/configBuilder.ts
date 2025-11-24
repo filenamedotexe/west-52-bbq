@@ -6,6 +6,7 @@ export type Config = {
   site?: SiteConfig;
   metadata?: MetaDataConfig;
   i18n?: I18NConfig;
+  business?: BusinessConfig;
   apps?: {
     blog?: AppBlogConfig;
   };
@@ -30,6 +31,32 @@ export interface I18NConfig {
   language: string;
   textDirection: string;
   dateFormatter?: Intl.DateTimeFormat;
+}
+
+export interface BusinessConfig {
+  name: string;
+  phone: string;
+  phoneRaw: string;
+  address: {
+    street: string;
+    city: string;
+    state: string;
+    zip: string;
+    full: string;
+  };
+  coordinates: {
+    lat: number;
+    lng: number;
+  };
+  hours: {
+    monday: string;
+    tuesday: string;
+    wednesday: string;
+    thursday: string;
+    friday: string;
+    saturday: string;
+    sunday: string;
+  };
 }
 export interface AppBlogConfig {
   isEnabled: boolean;
@@ -193,10 +220,41 @@ const getAnalytics = (config: Config) => {
   return merge({}, _default, config?.analytics ?? {}) as AnalyticsConfig;
 };
 
+const getBusiness = (config: Config) => {
+  const _default = {
+    name: 'Business Name',
+    phone: '(555) 555-5555',
+    phoneRaw: '5555555555',
+    address: {
+      street: '',
+      city: '',
+      state: '',
+      zip: '',
+      full: '',
+    },
+    coordinates: {
+      lat: 0,
+      lng: 0,
+    },
+    hours: {
+      monday: 'Closed',
+      tuesday: 'Closed',
+      wednesday: '9:00 AM - 5:00 PM',
+      thursday: '9:00 AM - 5:00 PM',
+      friday: '9:00 AM - 5:00 PM',
+      saturday: '10:00 AM - 4:00 PM',
+      sunday: 'Closed',
+    },
+  };
+
+  return merge({}, _default, config?.business ?? {}) as BusinessConfig;
+};
+
 export default (config: Config) => ({
   SITE: getSite(config),
   I18N: getI18N(config),
   METADATA: getMetadata(config),
+  BUSINESS: getBusiness(config),
   APP_BLOG: getAppBlog(config),
   UI: getUI(config),
   ANALYTICS: getAnalytics(config),
