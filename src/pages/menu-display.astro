@@ -1,0 +1,375 @@
+---
+import { getCollection } from 'astro:content';
+import DisplayLayout from '~/layouts/DisplayLayout.astro';
+import { getBusinessInfo } from '~/utils/business';
+
+export const prerender = false;
+
+// Fetch active menu items
+const allMenuItems = await getCollection('menu');
+const activeMenuItems = allMenuItems.filter((item) => item.data.active !== false);
+
+// Group items by category for section-based display
+const categoryOrder = ['smoked-meats', 'combo-platters', 'sandwiches', 'sides', 'desserts', 'beverages'];
+
+// Category display names
+const categoryNames: Record<string, string> = {
+  'smoked-meats': 'SMOKED MEATS',
+  'combo-platters': 'COMBO PLATTERS',
+  'sandwiches': 'SANDWICHES',
+  'sides': 'SIDES',
+  'desserts': 'DESSERTS',
+  'beverages': 'BEVERAGES',
+};
+
+// Group menu items by category
+const menuByCategory = categoryOrder.map((category) => ({
+  category,
+  name: categoryNames[category],
+  items: activeMenuItems.filter((item) => item.data.category === category),
+})).filter(section => section.items.length > 0); // Only include categories with items
+
+const business = getBusinessInfo();
+
+const metadata = {
+  title: `Menu Display - ${business.name}`,
+  description: 'Digital menu display',
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
+---
+
+<DisplayLayout metadata={metadata}>
+  <div class="menu-display">
+    <!-- Header -->
+    <header class="display-header">
+      <h1 class="restaurant-name">{business.name}</h1>
+      <p class="tagline">Authentic Texas-Style BBQ</p>
+    </header>
+
+    <!-- Menu Content -->
+    <main class="display-content">
+      {menuByCategory.map((section) => (
+        <section class="menu-section">
+          <h2 class="section-header">{section.name}</h2>
+          <div class="section-divider"></div>
+
+          <div class="menu-items">
+            {section.items.map((item) => (
+              <article class="menu-item">
+                <div class="item-info">
+                  <div class="item-header">
+                    <h3 class="item-name">
+                      {item.data.featured && <span class="featured-marker">★ </span>}
+                      {item.data.name}
+                    </h3>
+                    <span class="price-leader"></span>
+                    <span class="item-price">${item.data.price.toFixed(2)}</span>
+                  </div>
+
+                  <p class="item-description">{item.data.description}</p>
+
+                  {(item.data.servingSize || (item.data.dietaryTags && item.data.dietaryTags.length > 0) || (item.data.spicyLevel && item.data.spicyLevel > 0)) && (
+                    <div class="item-meta">
+                      {item.data.servingSize && (
+                        <span class="serving-size">{item.data.servingSize}</span>
+                      )}
+                      {item.data.dietaryTags && item.data.dietaryTags.map((tag: string) => (
+                        <span class="dietary-tag" title={tag}>
+                          {tag === 'gluten-free' ? 'GF' :
+                           tag === 'dairy-free' ? 'DF' :
+                           tag === 'vegetarian' ? 'V' :
+                           tag === 'vegan' ? 'VG' : tag.toUpperCase()}
+                        </span>
+                      ))}
+                      {item.data.spicyLevel && item.data.spicyLevel > 0 && (
+                        <span class="spicy-indicator">{'🔥'.repeat(item.data.spicyLevel)}</span>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      ))}
+    </main>
+
+    <!-- Footer -->
+    <footer class="display-footer">
+      <div class="footer-content">
+        <p class="hours">{business.hours.wednesday} (Wed-Sat) | {business.hours.sunday} (Sun) | {business.hours.monday} (Mon-Tue)</p>
+        <p class="contact">{business.phone} • {business.address}</p>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Auto-refresh every 5 minutes to sync with menu updates
+    const AUTO_REFRESH_INTERVAL = 5 * 60 * 1000; // 5 minutes in milliseconds
+
+    setTimeout(() => {
+      window.location.reload();
+    }, AUTO_REFRESH_INTERVAL);
+
+    // Prevent context menu (right-click) on display
+    document.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+    });
+
+    // Add smooth fade-in on load
+    document.addEventListener('DOMContentLoaded', () => {
+      document.body.style.opacity = '0';
+      setTimeout(() => {
+        document.body.style.transition = 'opacity 0.5s ease-in';
+        document.body.style.opacity = '1';
+      }, 100);
+    });
+  </script>
+
+  <style>
+    .menu-display {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      width: 100vw;
+      background: linear-gradient(135deg, #2B2B2B 0%, #1a1a1a 100%);
+      font-family: 'Inter', system-ui, sans-serif;
+      overflow: hidden;
+    }
+
+    /* Header */
+    .display-header {
+      background: linear-gradient(90deg, #FF6633 0%, #C84B31 100%);
+      padding: 1.5vh 4vw;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      flex-shrink: 0;
+      border-bottom: 3px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .restaurant-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 4.5vh, 4.5rem);
+      font-weight: 700;
+      margin: 0;
+      color: #FFFFFF;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+      letter-spacing: 0.08em;
+    }
+
+    .tagline {
+      font-size: clamp(0.9rem, 1.8vh, 1.8rem);
+      margin: 0.5vh 0 0 0;
+      color: #FFFFFF;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      opacity: 0.95;
+    }
+
+    /* Content - 2 Column Layout */
+    .display-content {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3vh 4vw;
+      padding: 3vh 4vw 2vh;
+      overflow-y: auto;
+      overflow-x: hidden;
+      flex: 1;
+    }
+
+    /* Menu Section */
+    .menu-section {
+      display: flex;
+      flex-direction: column;
+      gap: 2vh;
+    }
+
+    .section-header {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.8rem, 3vh, 3rem);
+      color: #FF6633;
+      margin: 0;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .section-divider {
+      height: 2px;
+      background: linear-gradient(to right,
+        rgba(255, 102, 51, 0.6) 0%,
+        rgba(255, 102, 51, 0.3) 50%,
+        rgba(255, 102, 51, 0) 100%);
+      margin-bottom: 1vh;
+    }
+
+    /* Menu Items Container */
+    .menu-items {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5vh;
+    }
+
+    /* Individual Menu Item */
+    .menu-item {
+      padding-bottom: 2vh;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .menu-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .item-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8vh;
+    }
+
+    /* Item Header with Name and Price */
+    .item-header {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: baseline;
+      gap: 1vw;
+    }
+
+    .item-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.3rem, 2.2vh, 2.2rem);
+      color: #FFFFFF;
+      margin: 0;
+      line-height: 1.2;
+      letter-spacing: 0.03em;
+      font-weight: 400;
+      white-space: nowrap;
+    }
+
+    .featured-marker {
+      color: #FF6633;
+      font-size: 1.1em;
+    }
+
+    /* Dotted Line Between Name and Price */
+    .price-leader {
+      border-bottom: 2px dotted rgba(255, 255, 255, 0.2);
+      height: 0.8em;
+      min-width: 2vw;
+    }
+
+    .item-price {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.3rem, 2rem, 2rem);
+      color: #FF6633;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    /* Description */
+    .item-description {
+      font-size: clamp(0.85rem, 1.4vh, 1.4rem);
+      color: #E5E5E5;
+      margin: 0;
+      line-height: 1.5;
+      font-weight: 300;
+    }
+
+    /* Meta Information (Serving Size, Tags) */
+    .item-meta {
+      display: flex;
+      align-items: center;
+      gap: 1.5vw;
+      flex-wrap: wrap;
+      margin-top: 0.5vh;
+    }
+
+    .serving-size {
+      font-size: clamp(0.75rem, 1.2vh, 1.2rem);
+      color: #AAAAAA;
+      font-style: italic;
+    }
+
+    .dietary-tag {
+      display: inline-block;
+      padding: 0.3vh 0.8vw;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 3px;
+      font-size: clamp(0.65rem, 1vh, 1rem);
+      color: #CCCCCC;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .spicy-indicator {
+      font-size: clamp(0.8rem, 1.3vh, 1.3rem);
+      line-height: 1;
+    }
+
+    /* Responsive adjustments for smaller viewports */
+    @media (max-height: 800px) {
+      .display-content {
+        gap: 1.5vh 3.5vw;
+        padding: 1.8vh 3.5vw 1.2vh;
+      }
+
+      .menu-section {
+        gap: 1.5vh;
+      }
+
+      .menu-items {
+        gap: 1.5vh;
+      }
+
+      .menu-item {
+        padding-bottom: 1.2vh;
+      }
+
+      .section-header {
+        font-size: clamp(1.5rem, 2.4vh, 2.4rem);
+      }
+
+      .item-header {
+        gap: 0.8vw;
+      }
+
+      .item-description {
+        font-size: clamp(0.8rem, 1.3vh, 1.3rem);
+        line-height: 1.4;
+      }
+    }
+
+    /* Footer */
+    .display-footer {
+      background: rgba(0, 0, 0, 0.4);
+      padding: 0.4vh 3vw;
+      text-align: center;
+      border-top: 2px solid rgba(255, 102, 51, 0.3);
+      flex-shrink: 0;
+      height: 3.5vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1vw;
+    }
+
+    .hours,
+    .contact {
+      font-size: clamp(0.7rem, 1.5vh, 1.2rem);
+      color: #E0E0E0;
+      margin: 0;
+      font-weight: 300;
+    }
+  </style>
+</DisplayLayout>

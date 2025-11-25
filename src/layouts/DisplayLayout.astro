@@ -1,0 +1,68 @@
+---
+export interface Props {
+  metadata?: object;
+}
+
+const { metadata = {} } = Astro.props as Props;
+const { title = 'Menu Display', description = 'Digital menu display' } = metadata as any;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;700&display=swap" rel="stylesheet" />
+
+    <style is:global>
+      /* Display-specific global styles */
+      html, body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+        background-color: #2B2B2B;
+        color: #F5F5F5;
+      }
+
+      /* Prevent text selection on display */
+      * {
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+      }
+
+      /* Prevent screen dimming/sleep */
+      body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 1px;
+        height: 1px;
+        opacity: 0.01;
+        pointer-events: none;
+        animation: preventSleep 30s infinite;
+      }
+
+      @keyframes preventSleep {
+        0%, 100% { opacity: 0.01; }
+        50% { opacity: 0.02; }
+      }
+    </style>
+
+  </head>
+
+  <body>
+    <slot />
+  </body>
+</html>
