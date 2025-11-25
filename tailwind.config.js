@@ -27,6 +27,10 @@ export default {
         heading: ['var(--aw-font-heading, ui-sans-serif)', ...defaultTheme.fontFamily.sans],
       },
 
+      lineHeight: {
+        tighter: '1.1',
+      },
+
       animation: {
         fade: 'fadeInUp 1s both',
       },
@@ -41,8 +45,21 @@ export default {
   },
   plugins: [
     typographyPlugin,
-    plugin(({ addVariant }) => {
+    plugin(({ addVariant, addUtilities }) => {
       addVariant('intersect', '&:not([no-intersect])');
+
+      // Add custom intersection observer utilities
+      addUtilities({
+        '.intersect-once': {
+          'data-intersect-once': 'true',
+        },
+        '.intersect-quarter': {
+          'data-intersect-threshold': '0.25',
+        },
+        '.intersect-no-queue': {
+          'data-intersect-no-queue': 'true',
+        },
+      });
     }),
   ],
   darkMode: 'class',

@@ -39,9 +39,48 @@
   .touch-target {
     @apply min-h-[44px] min-w-[44px];
   }
+
+  /* Embed containers */
+  .map-embed-container {
+    @apply h-[450px];
+  }
+
+  /* Icon sizes */
+  .icon-xs { @apply w-3.5 h-3.5; }
+  .icon-sm { @apply w-4 h-4; }
+  .icon-md { @apply w-5 h-5; }
+  .icon-lg { @apply w-6 h-6; }
+  .icon-xl { @apply w-10 h-10; }
+  .icon-2xl { @apply w-12 h-12; }
+
+  /* Meta icons for blog */
+  .meta-icon {
+    @apply w-4 h-4 inline-block -mt-0.5 dark:text-gray-400;
+  }
+
+  /* Social icons */
+  .social-icon {
+    @apply w-6 h-6 text-gray-400 dark:text-slate-500 hover:text-black dark:hover:text-slate-300;
+  }
+
+  /* Link hover states */
+  .link-hover-primary {
+    @apply hover:text-primary dark:hover:text-blue-700;
+  }
+
+  /* Image placeholders */
+  .image-bg-placeholder {
+    @apply bg-gray-400 dark:bg-slate-700;
+  }
+
+  /* Scroll animations */
+  .fade-in-scroll {
+    @apply intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade;
+  }
 }
 
 @layer components {
+  /* Buttons */
   .btn {
     @apply inline-flex items-center justify-center rounded-full border-gray-400 border bg-transparent font-medium text-center text-base text-page leading-snug transition py-3.5 px-6 md:px-8 ease-in duration-200 focus:ring-blue-500 focus:ring-offset-blue-200 focus:ring-2 focus:ring-offset-2 hover:bg-gray-100 hover:border-gray-600 dark:text-slate-300 dark:border-slate-500 dark:hover:bg-slate-800 dark:hover:border-slate-800 cursor-pointer;
   }
@@ -57,6 +96,51 @@
   .btn-tertiary {
     @apply btn border-none shadow-none text-muted hover:text-gray-900 dark:text-gray-400 dark:hover:text-white;
   }
+
+  /* Cards */
+  .card-base {
+    @apply rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900 shadow;
+  }
+
+  .card-backdrop {
+    @apply card-base backdrop-blur;
+  }
+
+  .card-elevated {
+    @apply rounded-md shadow-xl dark:shadow-none dark:border dark:border-slate-600;
+  }
+
+  /* Forms */
+  .form-input {
+    @apply py-3 px-4 block w-full text-base rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900;
+  }
+
+  /* Typography */
+  .hero-title {
+    @apply text-5xl md:text-6xl font-bold leading-tighter tracking-normal mb-4 font-heading;
+  }
+
+  .post-title {
+    @apply text-4xl md:text-5xl font-bold leading-tighter tracking-normal font-heading;
+  }
+
+  .section-title {
+    @apply text-4xl md:text-5xl font-bold tracking-normal mb-4 font-heading;
+  }
+
+  .widget-title {
+    @apply font-bold leading-tighter tracking-normal font-heading text-heading text-3xl;
+  }
+
+  .tagline {
+    @apply text-base text-secondary dark:text-blue-200 font-bold tracking-wide uppercase;
+  }
+
+  /* YouTube embed */
+  .youtube-embed {
+    margin: 0 auto;
+    max-width: 100%;
+  }
 }
 
 #header.scroll > div:first-child {
@@ -65,12 +149,9 @@
 }
 .dark #header.scroll > div:first-child,
 #header.scroll.dark > div:first-child {
-  @apply bg-page md:bg-[#030621e6] border-b border-gray-500/20;
+  @apply bg-page md:bg-slate-900/90 md:backdrop-blur-md border-b border-gray-500/20;
   box-shadow: none;
 }
-/* #header.scroll > div:last-child {
-  @apply py-3;
-} */
 
 #header.expanded nav {
   position: fixed;
